@@ -1,0 +1,46 @@
+:root {
+  --color-page: #f7f4ec;
+  --color-surface: #ffffff;
+  --color-text: #17201a;
+  --color-muted: #5d665f;
+  --color-border: #d9dfd5;
+  --color-primary: #0f5132;
+  --color-primary-strong: #0a3a24;
+  --color-accent: #f8c544;
+  --color-accent-soft: #fff1bd;
+
+  --font-heading: "Funnel Display", Arial, sans-serif;
+  --font-body: "Jaldi", Arial, sans-serif;
+
+  --fs-page-title: clamp(40px, 4.6vw, 58px);
+  --fs-section-title: clamp(28px, 3.6vw, 46px);
+  --fs-heading: clamp(22px, 2.6vw, 34px);
+  --fs-body: clamp(18px, 1.6vw, 24px);
+  --fs-body-compact: clamp(14px, 1.2vw, 18px);
+  --fs-caption: clamp(12px, 1vw, 16px);
+
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --space-xl: 56px;
+  --space-2xl: 88px;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --shadow-soft: 0 18px 50px rgba(23, 32, 26, 0.12);
+  --container: 1120px;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --fs-page-title: clamp(32px, 9vw, 42px);
+    --fs-section-title: clamp(24px, 7vw, 32px);
+    --fs-heading: clamp(19px, 5vw, 24px);
+    --fs-body: clamp(16px, 4vw, 18px);
+    --fs-body-compact: clamp(14px, 3.6vw, 16px);
+    --fs-caption: clamp(12px, 3vw, 14px);
+    --space-xl: 40px;
+    --space-2xl: 56px;
+  }
+}

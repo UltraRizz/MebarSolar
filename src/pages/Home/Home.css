@@ -1,0 +1,119 @@
+.home-hero {
+  padding: var(--space-2xl) 0 var(--space-xl);
+  background:
+    linear-gradient(120deg, rgba(248, 197, 68, 0.18), transparent 42%),
+    var(--color-page);
+}
+
+.home-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.hero-copy {
+  max-width: 680px;
+}
+
+.eyebrow {
+  margin-bottom: var(--space-sm);
+  color: var(--color-primary);
+  font-size: var(--fs-body-compact);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hero-copy h1 {
+  margin-bottom: var(--space-md);
+}
+
+.hero-copy p {
+  color: var(--color-muted);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.hero-panel {
+  min-height: 390px;
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(160deg, rgba(15, 81, 50, 0.08), transparent 46%),
+    var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.panel-sun {
+  width: 92px;
+  height: 92px;
+  margin-bottom: var(--space-lg);
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.panel-line {
+  height: 18px;
+  width: 58%;
+  margin-bottom: var(--space-sm);
+  border-radius: 999px;
+  background: var(--color-border);
+}
+
+.panel-line-wide {
+  width: 82%;
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.panel-grid span {
+  min-height: 86px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-soft);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.feature-card {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.feature-card h2 {
+  margin-bottom: var(--space-sm);
+  font-size: var(--fs-heading);
+}
+
+.feature-card p {
+  margin-bottom: 0;
+  color: var(--color-muted);
+}
+
+@media (max-width: 840px) {
+  .home-hero-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-panel {
+    min-height: 320px;
+  }
+}

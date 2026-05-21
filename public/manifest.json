@@ -1,0 +1,15 @@
+{
+  "short_name": "Mebar Solar",
+  "name": "Mebar Solar",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0f5132",
+  "background_color": "#f7f4ec"
+}
