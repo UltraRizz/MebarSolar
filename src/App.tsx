@@ -5,7 +5,6 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import Footer from "./components/Footer/Footer";
 import Nav from "./components/Nav/Nav";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
@@ -43,7 +42,6 @@ const App: React.FC = () => {
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
-        <Footer />
       </div>
     </Router>
   );

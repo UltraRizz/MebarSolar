@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
 import homePanelImage from "../../assets/images/home/home1.png";
 import home2Image from "../../assets/images/home/home2.png";
 import heroImage from "../../assets/images/home/heroSection.png";
@@ -197,6 +198,8 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
