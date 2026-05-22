@@ -1,16 +1,17 @@
 :root {
-  --color-page: #f7f4ec;
+  --color-page: #f6f2ed;
   --color-surface: #ffffff;
-  --color-text: #17201a;
-  --color-muted: #5d665f;
-  --color-border: #d9dfd5;
-  --color-primary: #0f5132;
-  --color-primary-strong: #0a3a24;
-  --color-accent: #f8c544;
-  --color-accent-soft: #fff1bd;
+  --color-text: #2a2a2a;
+  --color-muted: #6f7984;
+  --color-border: #d9d2c8;
+  --color-primary: #5e83ae;
+  --color-primary-strong: #496f98;
+  --color-accent: #2a2a2a;
+  --color-accent-soft: #e8eef5;
 
-  --font-heading: "Funnel Display", Arial, sans-serif;
-  --font-body: "Jaldi", Arial, sans-serif;
+  --font-heading: "Osmose-Trial", "Osmose Trial", "DM Sans", Arial, sans-serif;
+  --font-body: "DM Sans", Arial, sans-serif;
+  --font-cta: "DM Sans", Arial, sans-serif;
 
   --fs-page-title: clamp(40px, 4.6vw, 58px);
   --fs-section-title: clamp(28px, 3.6vw, 46px);
