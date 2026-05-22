@@ -1,14 +1,16 @@
 .site-nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
-  background: rgba(247, 244, 236, 0.94);
-  border-bottom: 1px solid var(--color-border);
-  backdrop-filter: blur(12px);
+  color: var(--color-surface);
+  background: transparent;
+  pointer-events: none;
 }
 
 .nav-inner {
-  min-height: 76px;
+  min-height: clamp(3rem, 7vw, 4.5rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,81 +20,69 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--font-heading);
-  font-size: 22px;
+  gap: var(--space-xs);
+  font-family: var(--font-cta);
+  font-size: var(--fs-caption);
   font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: auto;
 }
 
 .brand-mark {
-  width: 34px;
-  height: 34px;
+  width: 0.85em;
+  aspect-ratio: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 38%, var(--color-accent) 0 32%, transparent 34%),
-    linear-gradient(135deg, var(--color-primary), #3b8a52);
+    radial-gradient(circle, var(--color-surface) 0 18%, transparent 20%),
+    conic-gradient(
+      from 0deg,
+      transparent 0 9%,
+      var(--color-surface) 10% 12%,
+      transparent 13% 22%,
+      var(--color-surface) 23% 25%,
+      transparent 26% 35%,
+      var(--color-surface) 36% 38%,
+      transparent 39% 48%,
+      var(--color-surface) 49% 51%,
+      transparent 52% 61%,
+      var(--color-surface) 62% 64%,
+      transparent 65% 74%,
+      var(--color-surface) 75% 77%,
+      transparent 78% 87%,
+      var(--color-surface) 88% 90%,
+      transparent 91% 100%
+    );
 }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: var(--space-lg);
-}
-
-.nav-links a {
-  color: var(--color-muted);
-  font-size: var(--fs-body-compact);
+.menu-button {
+  display: inline-grid;
+  justify-items: center;
+  gap: var(--space-xs);
+  padding: 0;
+  border: 0;
+  color: var(--color-surface);
+  background: transparent;
+  font-family: var(--font-cta);
+  font-size: var(--fs-caption);
   font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: auto;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--color-primary);
+.menu-icon {
+  display: grid;
+  gap: 0.28em;
 }
 
-.nav-toggle {
-  display: none;
-  width: 42px;
-  height: 42px;
-  padding: 9px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-surface);
-}
-
-.nav-toggle span {
+.menu-icon span {
   display: block;
-  height: 2px;
-  margin: 5px 0;
-  background: var(--color-text);
+  width: 1.2em;
+  height: 0.12em;
+  background: currentColor;
 }
 
-@media (max-width: 720px) {
-  .nav-toggle {
-    display: block;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 76px;
-    left: 16px;
-    right: 16px;
-    display: none;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: var(--space-sm);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-soft);
-  }
-
-  .nav-links.is-open {
-    display: flex;
-  }
-
-  .nav-links a {
-    padding: 12px;
-  }
+.menu-label {
+  writing-mode: vertical-rl;
 }

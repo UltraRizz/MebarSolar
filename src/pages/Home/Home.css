@@ -1,119 +1,508 @@
-.home-hero {
-  padding: var(--space-2xl) 0 var(--space-xl);
-  background:
-    linear-gradient(120deg, rgba(248, 197, 68, 0.18), transparent 42%),
-    var(--color-page);
+.home-page {
+  background: var(--color-page);
 }
 
-.home-hero-grid {
+.home-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-  align-items: center;
+  min-height: clamp(34rem, 76vh, 48rem);
+  overflow: hidden;
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.home-hero-image,
+.home-hero-content {
+  grid-area: 1 / 1;
+}
+
+.home-hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+}
+
+.home-hero-content {
+  display: grid;
+  align-content: center;
+  gap: var(--space-xl);
+  padding-block: clamp(7rem, 14vw, 11rem) var(--space-xl);
+}
+
+.home-hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.42fr);
+  align-items: end;
   gap: var(--space-xl);
 }
 
-.hero-copy {
-  max-width: 680px;
+.home-hero h1 {
+  max-width: 9em;
+  margin: 0;
+  color: var(--color-surface);
+  font-size: clamp(2.5rem, 6vw, 5.25rem);
+  font-weight: 500;
 }
 
-.eyebrow {
-  margin-bottom: var(--space-sm);
-  color: var(--color-primary);
-  font-size: var(--fs-body-compact);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.hero-copy h1 {
-  margin-bottom: var(--space-md);
-}
-
-.hero-copy p {
-  color: var(--color-muted);
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
+.home-hero-aside {
+  display: grid;
+  justify-items: start;
   gap: var(--space-sm);
-  margin-top: var(--space-lg);
+  max-width: 26rem;
 }
 
-.hero-panel {
-  min-height: 390px;
-  padding: var(--space-lg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background:
-    linear-gradient(160deg, rgba(15, 81, 50, 0.08), transparent 46%),
-    var(--color-surface);
-  box-shadow: var(--shadow-soft);
+.home-hero-aside p,
+.home-statement p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  line-height: 1.45;
 }
 
-.panel-sun {
-  width: 92px;
-  height: 92px;
-  margin-bottom: var(--space-lg);
-  border-radius: 50%;
+.home-statement {
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.home-statement-inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-md);
+  padding-block: clamp(5rem, 12vw, 10rem);
+  text-align: center;
+}
+
+.home-statement h2 {
+  max-width: 18em;
+  margin: 0;
+  color: var(--color-surface);
+  font-size: clamp(2.15rem, 5vw, 4.75rem);
+  font-weight: 500;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.home-statement p {
+  max-width: 78rem;
+}
+
+.home-image-band {
+  background: var(--color-primary);
+}
+
+.home-panel-image {
+  display: block;
+  width: 100%;
+  min-height: clamp(12rem, 26vw, 22rem);
+  object-fit: cover;
+}
+
+.why-solar {
+  background: var(--color-page);
+  color: var(--color-text);
+}
+
+.why-solar-inner {
+  display: grid;
+  gap: var(--space-lg);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.why-solar h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(2rem, 4.4vw, 4rem);
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.why-solar-scroller {
+  --why-solar-edge: max(1rem, calc((100vw - var(--container)) / 2));
+
+  display: grid;
+  width: 100vw;
+  margin-inline: calc((100vw - 100%) / -2);
+  grid-auto-columns: clamp(9rem, 24vw, 22rem);
+  grid-auto-flow: column;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding-inline: var(--why-solar-edge);
+  padding-block-end: var(--space-lg);
+  scroll-padding-inline: var(--why-solar-edge);
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+}
+
+.why-solar-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.solar-benefit-card {
+  display: grid;
+  grid-template-rows: 64% 36%;
+  aspect-ratio: 0.56;
+  background: var(--color-accent);
+  color: var(--color-surface);
+  scroll-snap-align: start;
+}
+
+.solar-benefit-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.solar-benefit-copy {
+  display: grid;
+  align-content: start;
+  gap: clamp(0.35rem, 1vw, 0.75rem);
+  padding: clamp(0.65rem, 1.8vw, 1.4rem);
+}
+
+.solar-benefit-copy h3 {
+  margin: 0;
+  color: var(--color-surface);
+  font-size: clamp(0.62rem, 1.45vw, 1.35rem);
+  font-weight: 500;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.solar-benefit-copy p {
+  margin: 0;
+  color: var(--color-surface);
+  font-size: clamp(0.48rem, 1.12vw, 1.08rem);
+  line-height: 1.45;
+}
+
+.why-solar-scroll-indicator {
+  display: grid;
+  justify-content: center;
+}
+
+.why-solar-scroll-indicator::before {
+  content: "";
+  grid-area: 1 / 1;
+  width: 5.5rem;
+  height: 0.36rem;
+  border-radius: 999rem;
   background: var(--color-accent);
 }
 
-.panel-line {
-  height: 18px;
-  width: 58%;
-  margin-bottom: var(--space-sm);
-  border-radius: 999px;
-  background: var(--color-border);
+.why-solar-scroll-indicator span {
+  grid-area: 1 / 1;
+  justify-self: start;
+  width: 3.8rem;
+  height: 0.36rem;
+  border-radius: 999rem;
+  background: var(--color-primary);
 }
 
-.panel-line-wide {
-  width: 82%;
-}
-
-.panel-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-sm);
-  margin-top: var(--space-lg);
-}
-
-.panel-grid span {
-  min-height: 86px;
-  border-radius: var(--radius-sm);
-  background: var(--color-accent-soft);
-}
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
-}
-
-.feature-card {
-  padding: var(--space-lg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+.panel-products {
   background: var(--color-surface);
+  color: var(--color-text);
 }
 
-.feature-card h2 {
-  margin-bottom: var(--space-sm);
-  font-size: var(--fs-heading);
+.panel-products-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  column-gap: clamp(4rem, 10vw, 11rem);
+  row-gap: clamp(5rem, 10vw, 9rem);
+  padding-block: clamp(5rem, 11vw, 10rem);
 }
 
-.feature-card p {
-  margin-bottom: 0;
-  color: var(--color-muted);
+.panel-products-intro,
+.panel-products-count {
+  display: grid;
+  align-content: space-between;
+  gap: var(--space-xl);
 }
 
-@media (max-width: 840px) {
-  .home-hero-grid,
-  .feature-grid {
+.panel-products-intro p,
+.panel-products-intro a,
+.panel-products-main p,
+.panel-products-details p,
+.panel-products-details li {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  line-height: 1.35;
+}
+
+.panel-products-intro p {
+  max-width: 18rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.panel-products-intro a {
+  width: fit-content;
+  color: var(--color-text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 0.16em;
+  text-underline-offset: 0.22em;
+}
+
+.panel-products-main {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.panel-products-main h2 {
+  max-width: 12.5em;
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(2.15rem, 4.6vw, 4.8rem);
+  font-weight: 500;
+  line-height: 0.86;
+}
+
+.panel-products-main p,
+.panel-products-details p {
+  max-width: 40rem;
+  margin: 0;
+}
+
+.panel-products-count span {
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(6rem, 16vw, 12rem);
+  font-weight: 700;
+  line-height: 0.8;
+}
+
+.panel-products-count h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(1.35rem, 2.4vw, 2.15rem);
+  font-weight: 700;
+}
+
+.panel-products-details {
+  display: grid;
+  align-content: space-between;
+  gap: clamp(4rem, 8vw, 7rem);
+}
+
+.panel-products-details ol {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panel-products-details li {
+  display: flex;
+  gap: 0.28em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.panel-products-details li span {
+  flex: 0 0 auto;
+}
+
+.panel-products-cta,
+.panel-products-contact {
+  grid-column: 1 / -1;
+}
+
+.panel-products-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
+  align-items: center;
+  gap: clamp(1rem, 2.8vw, 3rem);
+  margin-block-start: 0;
+}
+
+.homeowner-card {
+  display: grid;
+  aspect-ratio: 1.45;
+  min-height: clamp(12rem, 24vw, 18rem);
+  overflow: hidden;
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.homeowner-card img,
+.homeowner-card::before,
+.homeowner-card span {
+  grid-area: 1 / 1;
+}
+
+.homeowner-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.homeowner-card::before {
+  content: "";
+  background: rgba(246, 242, 237, 0.42);
+}
+
+.homeowner-card span {
+  align-self: end;
+  padding: clamp(1rem, 2.4vw, 2rem);
+  color: var(--color-surface);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-weight: 700;
+  line-height: 0.9;
+}
+
+.homeowner-card span:last-child {
+  align-self: end;
+  justify-self: end;
+  font-family: var(--font-body);
+  font-size: clamp(2.4rem, 5vw, 4.75rem);
+  font-weight: 400;
+}
+
+.business-card {
+  display: grid;
+  gap: var(--space-md);
+  justify-items: start;
+}
+
+.business-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 3rem);
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.4vw, 3.15rem);
+  font-weight: 700;
+  line-height: 0.95;
+  white-space: nowrap;
+}
+
+.business-card a span:last-child {
+  width: clamp(1.8rem, 3.4vw, 3.5rem);
+  height: 0.08em;
+  background: currentColor;
+}
+
+.business-card p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.25vw, 1.15rem);
+}
+
+.panel-products-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: center;
+  gap: var(--space-xl);
+  margin-block-start: clamp(2rem, 4vw, 3.5rem);
+}
+
+.panel-products-contact h2 {
+  max-width: 22em;
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(1.65rem, 3.2vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.panel-products-contact a {
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 0.16em;
+  text-underline-offset: 0.32em;
+}
+
+@media (max-width: 760px) {
+  .home-hero {
+    min-height: clamp(32rem, 88vh, 42rem);
+  }
+
+  .home-hero-layout {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: var(--space-md);
+  }
+
+  .home-hero h1 {
+    font-size: clamp(2.35rem, 13vw, 4rem);
+  }
+
+  .home-hero-aside {
+    max-width: 18rem;
+    margin-inline-start: auto;
+  }
+
+  .home-statement h2 {
+    font-size: clamp(2rem, 10vw, 3.25rem);
+  }
+
+  .why-solar-scroller {
+    --why-solar-edge: max(0.75rem, calc((100vw - 100%) / 2));
+
+    grid-auto-columns: clamp(6.25rem, 24vw, 9rem);
+    gap: var(--space-md);
+  }
+
+  .panel-products-grid {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-xl);
+    padding-block: clamp(4rem, 14vw, 6rem);
+  }
+
+  .panel-products-intro,
+  .panel-products-count,
+  .panel-products-details {
+    align-content: start;
+  }
+
+  .panel-products-main h2 {
+    font-size: clamp(2rem, 11vw, 3.4rem);
+  }
+
+  .panel-products-count {
+    gap: var(--space-md);
+  }
+
+  .panel-products-cta,
+  .panel-products-contact {
     grid-template-columns: 1fr;
   }
 
-  .hero-panel {
-    min-height: 320px;
+  .business-card a,
+  .homeowner-card span,
+  .business-card p {
+    font-size: clamp(2rem, 10vw, 3.25rem);
+  }
+
+  .business-card a {
+    white-space: normal;
+  }
+
+  .homeowner-card {
+    aspect-ratio: 1.42;
+  }
+
+  .business-card a {
+    gap: var(--space-lg);
+  }
+
+  .panel-products-contact {
+    align-items: start;
+    margin-block-start: var(--space-xl);
+  }
+
+  .panel-products-contact h2 {
+    font-size: clamp(1.55rem, 7vw, 2.5rem);
   }
 }
