@@ -204,14 +204,20 @@
 .panel-products {
   background: var(--color-surface);
   color: var(--color-text);
+  overflow: hidden;
 }
 
 .panel-products-grid {
+  --product-edge: clamp(1rem, 3vw, 3rem);
+
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  column-gap: clamp(4rem, 10vw, 11rem);
-  row-gap: clamp(5rem, 10vw, 9rem);
-  padding-block: clamp(5rem, 11vw, 10rem);
+  width: 100vw;
+  max-width: none;
+  margin-inline: calc(50% - 50vw);
+  grid-template-columns: minmax(12rem, 0.72fr) minmax(0, 1fr);
+  column-gap: clamp(2rem, 6vw, 6rem);
+  row-gap: clamp(2.5rem, 5vw, 4.5rem);
+  padding: clamp(2.5rem, 6vw, 5rem) var(--product-edge);
 }
 
 .panel-products-intro,
@@ -227,12 +233,22 @@
 .panel-products-details p,
 .panel-products-details li {
   font-family: var(--font-body);
-  font-size: var(--fs-caption);
   line-height: 1.35;
 }
 
+.panel-products-intro p,
+.panel-products-intro a {
+  font-size: clamp(1.05rem, 1.25vw, 1.45rem);
+}
+
+.panel-products-main p,
+.panel-products-details p,
+.panel-products-details li {
+  font-size: clamp(0.82rem, 0.95vw, 1.12rem);
+}
+
 .panel-products-intro p {
-  max-width: 18rem;
+  max-width: 26rem;
   margin: 0;
   text-transform: uppercase;
 }
@@ -249,16 +265,16 @@
 
 .panel-products-main {
   display: grid;
-  gap: var(--space-xl);
+  gap: clamp(1.5rem, 3vw, 3rem);
 }
 
 .panel-products-main h2 {
-  max-width: 12.5em;
+  max-width: 11em;
   margin: 0;
   color: var(--color-text);
-  font-size: clamp(2.15rem, 4.6vw, 4.8rem);
+  font-size: clamp(2.15rem, 4vw, 4.65rem);
   font-weight: 500;
-  line-height: 0.86;
+  line-height: 0.9;
 }
 
 .panel-products-main p,
@@ -270,7 +286,7 @@
 .panel-products-count span {
   color: var(--color-primary);
   font-family: var(--font-heading);
-  font-size: clamp(6rem, 16vw, 12rem);
+  font-size: clamp(8.5rem, 18vw, 16rem);
   font-weight: 700;
   line-height: 0.8;
 }
@@ -278,19 +294,19 @@
 .panel-products-count h3 {
   margin: 0;
   color: var(--color-text);
-  font-size: clamp(1.35rem, 2.4vw, 2.15rem);
+  font-size: clamp(1rem, 2vw, 2rem);
   font-weight: 700;
 }
 
 .panel-products-details {
   display: grid;
   align-content: space-between;
-  gap: clamp(4rem, 8vw, 7rem);
+  gap: clamp(2rem, 4vw, 4rem);
 }
 
 .panel-products-details ol {
   display: grid;
-  gap: var(--space-md);
+  gap: clamp(1rem, 1.6vw, 1.6rem);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -313,10 +329,15 @@
 }
 
 .panel-products-cta {
+  --panel-cta-gap: clamp(1rem, 2.8vw, 3rem);
+
   display: grid;
-  grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
+  width: 100vw;
+  margin-inline: calc(var(--product-edge) * -1);
+  grid-template-columns: minmax(0, calc(50vw - (var(--panel-cta-gap) / 2))) minmax(0, 1fr);
   align-items: center;
-  gap: clamp(1rem, 2.8vw, 3rem);
+  gap: var(--panel-cta-gap);
+  padding-inline-end: var(--product-edge);
   margin-block-start: 0;
 }
 
@@ -339,7 +360,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
 .homeowner-card::before {
@@ -377,7 +397,7 @@
   gap: clamp(1rem, 3vw, 3rem);
   color: var(--color-text);
   font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 3.4vw, 3.15rem);
+  font-size: clamp(2.25rem, 4.25vw, 4rem);
   font-weight: 700;
   line-height: 0.95;
   white-space: nowrap;
@@ -407,7 +427,7 @@
   max-width: 22em;
   margin: 0;
   color: var(--color-text);
-  font-size: clamp(1.65rem, 3.2vw, 3rem);
+  font-size: clamp(2.25rem, 4.6vw, 4.25rem);
   font-weight: 700;
   line-height: 1;
 }
@@ -455,9 +475,12 @@
   }
 
   .panel-products-grid {
+    width: auto;
+    max-width: var(--container);
+    margin-inline: auto;
     grid-template-columns: 1fr;
     row-gap: var(--space-xl);
-    padding-block: clamp(4rem, 14vw, 6rem);
+    padding: clamp(4rem, 14vw, 6rem) 0;
   }
 
   .panel-products-intro,
@@ -467,7 +490,7 @@
   }
 
   .panel-products-main h2 {
-    font-size: clamp(2rem, 11vw, 3.4rem);
+    font-size: clamp(1.85rem, 7vw, 3rem);
   }
 
   .panel-products-count {
@@ -477,6 +500,12 @@
   .panel-products-cta,
   .panel-products-contact {
     grid-template-columns: 1fr;
+  }
+
+  .panel-products-cta {
+    width: auto;
+    margin-inline-start: 0;
+    padding-inline-end: 0;
   }
 
   .business-card a,
@@ -503,6 +532,6 @@
   }
 
   .panel-products-contact h2 {
-    font-size: clamp(1.55rem, 7vw, 2.5rem);
+    font-size: clamp(2rem, 8.8vw, 3.25rem);
   }
 }
