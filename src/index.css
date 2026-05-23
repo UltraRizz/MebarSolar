@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Syne:wght@500;600;700&family=Urbanist:wght@500;600;700;800&display=swap");
 @import "./styles/theme.css";
 
 * {
@@ -67,7 +67,7 @@ li {
 }
 
 .page-shell {
-  width: min(100% - 32px, var(--container));
+  width: min(calc(100% - (var(--page-gutter) * 2)), var(--container));
   margin: 0 auto;
 }
 
@@ -79,9 +79,9 @@ li {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 10px 18px;
-  border: 1px solid transparent;
+  min-height: 2.75rem;
+  padding: 0.65rem 1.12rem;
+  border: 0.06rem solid transparent;
   border-radius: var(--radius-sm);
   font-family: var(--font-cta);
   font-size: var(--fs-body-compact);

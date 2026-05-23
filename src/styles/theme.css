@@ -1,47 +1,49 @@
 :root {
-  --color-page: #f6f2ed;
+  --color-page: #ffffff;
   --color-surface: #ffffff;
-  --color-text: #2a2a2a;
-  --color-muted: #6f7984;
-  --color-border: #d9d2c8;
-  --color-primary: #5e83ae;
-  --color-primary-strong: #496f98;
-  --color-accent: #2a2a2a;
-  --color-accent-soft: #e8eef5;
+  --color-section: #f5f5f5;
+  --color-text: #141314;
+  --color-muted: rgba(20, 19, 20, 0.62);
+  --color-border: rgba(20, 19, 20, 0.12);
+  --color-primary: #fd551d;
+  --color-primary-strong: #e24613;
+  --color-accent: #141314;
+  --color-accent-soft: #f5f5f5;
 
-  --font-heading: "Osmose-Trial", "Osmose Trial", "DM Sans", Arial, sans-serif;
+  --font-heading: "Syne", "DM Sans", Arial, sans-serif;
   --font-body: "DM Sans", Arial, sans-serif;
-  --font-cta: "DM Sans", Arial, sans-serif;
+  --font-cta: "Urbanist", "DM Sans", Arial, sans-serif;
 
-  --fs-page-title: clamp(40px, 4.6vw, 58px);
-  --fs-section-title: clamp(28px, 3.6vw, 46px);
-  --fs-heading: clamp(22px, 2.6vw, 34px);
-  --fs-body: clamp(18px, 1.6vw, 24px);
-  --fs-body-compact: clamp(14px, 1.2vw, 18px);
-  --fs-caption: clamp(12px, 1vw, 16px);
+  --fs-page-title: clamp(2.65rem, 5.4vw, 6rem);
+  --fs-section-title: clamp(2.05rem, 4.2vw, 4.35rem);
+  --fs-heading: clamp(1.55rem, 2.6vw, 3rem);
+  --fs-body: clamp(1rem, 1.25vw, 1.18rem);
+  --fs-body-compact: clamp(0.82rem, 0.95vw, 0.98rem);
+  --fs-caption: clamp(0.68rem, 0.78vw, 0.82rem);
 
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 20px;
-  --space-lg: 32px;
-  --space-xl: 56px;
-  --space-2xl: 88px;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3.5rem;
+  --space-2xl: 5.5rem;
 
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --shadow-soft: 0 18px 50px rgba(23, 32, 26, 0.12);
-  --container: 1120px;
+  --radius-sm: 0.38rem;
+  --radius-md: 0.5rem;
+  --shadow-soft: 0 1.12rem 3.12rem rgba(23, 32, 26, 0.12);
+  --container: 86rem;
+  --page-gutter: clamp(1.25rem, 5vw, 6rem);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
   :root {
-    --fs-page-title: clamp(32px, 9vw, 42px);
-    --fs-section-title: clamp(24px, 7vw, 32px);
-    --fs-heading: clamp(19px, 5vw, 24px);
-    --fs-body: clamp(16px, 4vw, 18px);
-    --fs-body-compact: clamp(14px, 3.6vw, 16px);
-    --fs-caption: clamp(12px, 3vw, 14px);
-    --space-xl: 40px;
-    --space-2xl: 56px;
+    --fs-page-title: clamp(2.35rem, 12vw, 4.2rem);
+    --fs-section-title: clamp(2rem, 9vw, 3.25rem);
+    --fs-heading: clamp(1.35rem, 6vw, 2rem);
+    --fs-body: clamp(0.96rem, 4vw, 1.08rem);
+    --fs-body-compact: clamp(0.82rem, 3.6vw, 0.95rem);
+    --fs-caption: clamp(0.68rem, 3vw, 0.78rem);
+    --space-xl: 2.5rem;
+    --space-2xl: 3.5rem;
   }
 }
