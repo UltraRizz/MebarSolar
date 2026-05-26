@@ -1,0 +1,308 @@
+.projects-page {
+  padding-block-start: clamp(3rem, 4.2vw, 4.15rem);
+  background: var(--color-page);
+  color: var(--color-text);
+}
+
+.projects-hero {
+  display: grid;
+  min-height: clamp(16rem, 28svh, 24rem);
+  overflow: hidden;
+  background: var(--color-accent);
+  color: var(--color-surface);
+}
+
+.projects-hero-image,
+.projects-hero-shade,
+.projects-hero-content {
+  grid-area: 1 / 1;
+}
+
+.projects-hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+}
+
+.projects-hero-shade {
+  background:
+    linear-gradient(90deg, rgba(20, 19, 20, 0.72), rgba(20, 19, 20, 0.24)),
+    linear-gradient(0deg, rgba(20, 19, 20, 0.18), rgba(20, 19, 20, 0.18));
+}
+
+.projects-hero-content {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+.projects-hero h1 {
+  max-width: 13em;
+  margin: var(--space-sm) 0 0;
+  color: var(--color-surface);
+  font-size: clamp(2.35rem, 4.4vw, 4.75rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.projects-hero-content > p:not(.section-kicker) {
+  max-width: 42rem;
+  margin: var(--space-sm) 0 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: var(--fs-body-compact);
+  line-height: 1.55;
+}
+
+.projects-gallery {
+  padding-block: clamp(4rem, 7vw, 6.5rem);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.6rem);
+}
+
+.project-card {
+  display: grid;
+  overflow: hidden;
+  border: 0.06rem solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.project-card:hover {
+  border-color: rgba(253, 85, 29, 0.28);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-0.18rem);
+}
+
+.project-card-media {
+  display: grid;
+  aspect-ratio: 2.14 / 1;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-section);
+}
+
+.project-card-media img,
+.project-card-media figcaption {
+  grid-area: 1 / 1;
+}
+
+.project-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 380ms ease;
+}
+
+.project-card:hover .project-card-media img {
+  transform: scale(1.035);
+}
+
+.project-card-media figcaption {
+  align-self: start;
+  justify-self: end;
+  margin: var(--space-xs);
+  padding: 0.35rem 0.5rem;
+  border-radius: 999rem;
+  background: rgba(20, 19, 20, 0.5);
+  color: var(--color-surface);
+  font-family: var(--font-cta);
+  font-size: clamp(0.58rem, 0.66vw, 0.68rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.project-card-body {
+  display: grid;
+  align-content: start;
+  padding: clamp(1rem, 1.8vw, 1.5rem);
+}
+
+.project-card h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(1.08rem, 1.45vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.75rem;
+  margin: 0.45rem 0 0;
+}
+
+.project-meta div {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.project-meta dt,
+.project-meta dd {
+  margin: 0;
+  font-size: var(--fs-caption);
+  line-height: 1.35;
+}
+
+.project-meta dt {
+  color: var(--color-primary);
+}
+
+.project-meta dd {
+  color: var(--color-muted);
+}
+
+.project-card p {
+  max-width: 31em;
+  margin: 0.6rem 0 0;
+  color: var(--color-muted);
+  font-size: var(--fs-caption);
+  line-height: 1.55;
+}
+
+.projects-impact {
+  display: grid;
+  padding-block: 0 clamp(4rem, 7vw, 6.5rem);
+}
+
+.projects-impact h2 {
+  margin: var(--space-sm) 0 0;
+  color: var(--color-text);
+  font-size: clamp(2rem, 3.4vw, 3.55rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.projects-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.4vw, 1.25rem);
+  margin-block-start: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.projects-impact-card {
+  display: grid;
+  align-content: space-between;
+  min-height: clamp(11rem, 18vw, 16.5rem);
+  padding: clamp(1.25rem, 2vw, 1.8rem);
+  background: var(--color-section);
+}
+
+.projects-impact-card strong {
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.2vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.projects-impact-card span {
+  color: var(--color-text);
+  font-family: var(--font-cta);
+  font-size: var(--fs-caption);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.projects-cta {
+  background: var(--color-accent);
+  color: var(--color-surface);
+}
+
+.projects-cta-inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-md);
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+  text-align: center;
+}
+
+.projects-cta h2 {
+  margin: 0;
+  color: var(--color-surface);
+  font-size: clamp(1.15rem, 1.8vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.projects-cta-button {
+  display: inline-grid;
+  grid-template-columns: max-content auto;
+  align-items: stretch;
+  min-height: clamp(2.8rem, 4vw, 3.5rem);
+  color: var(--color-surface);
+  background: transparent;
+  font-family: var(--font-cta);
+  font-size: var(--fs-caption);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: gap 180ms ease, transform 180ms ease;
+}
+
+.projects-cta-button:hover {
+  gap: 0.45rem;
+  transform: translateY(-0.12rem);
+}
+
+.projects-cta-button span {
+  display: grid;
+  place-items: center;
+  min-width: 3rem;
+  padding-inline: 1.2rem;
+  background: var(--color-primary);
+}
+
+.projects-cta-button span:first-child {
+  min-width: clamp(8rem, 12vw, 11rem);
+}
+
+.projects-cta-button:hover span {
+  background: var(--color-primary-strong);
+}
+
+@media (max-width: 56rem) {
+  .projects-grid,
+  .projects-impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 35rem) {
+  .projects-hero {
+    min-height: clamp(20rem, 52svh, 28rem);
+  }
+
+  .projects-hero-shade {
+    background:
+      linear-gradient(0deg, rgba(20, 19, 20, 0.72), rgba(20, 19, 20, 0.28)),
+      linear-gradient(90deg, rgba(20, 19, 20, 0.72), rgba(20, 19, 20, 0.18));
+  }
+
+  .projects-grid,
+  .projects-impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-impact-card {
+    min-height: 9rem;
+  }
+
+  .projects-cta-button {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}

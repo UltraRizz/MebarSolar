@@ -8,7 +8,7 @@ const menuLinks = [
   { label: "About", to: "/about" },
   { label: "Products", to: "/#product" },
   { label: "Solutions", to: "/#solutions" },
-  { label: "Projects", to: "/#projects" },
+  { label: "Projects", to: "/projects" },
   { label: "Contact", to: "/contact" },
 ];
 
