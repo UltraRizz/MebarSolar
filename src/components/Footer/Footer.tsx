@@ -10,7 +10,7 @@ const footerGroups = [
     links: [
       { label: "Homeowners", to: "/" },
       { label: "Business owners", to: "/" },
-      { label: "All products", to: "/#products" },
+      { label: "All products", to: "/product" },
     ],
   },
   {

@@ -216,7 +216,7 @@ const Home: React.FC = () => {
             <p className="section-kicker">Our products</p>
             <h2 id="home-products-title">Solar Panels for Every Need</h2>
           </div>
-          <Link className="products-explore" to="/contact">
+          <Link className="products-explore" to="/product">
             Explore
           </Link>
         </div>
@@ -244,7 +244,7 @@ const Home: React.FC = () => {
                   <SplitButton to="/contact" tone="dark">
                     Learn more
                   </SplitButton>
-                  <Link className="product-view-link" to="/contact">
+                  <Link className="product-view-link" to="/product">
                     View
                   </Link>
                 </div>

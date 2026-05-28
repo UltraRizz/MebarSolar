@@ -10,6 +10,8 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import FAQ from "./pages/FAQ/FAQ";
 import Home from "./pages/Home/Home";
+import Product from "./pages/Product/Product";
+import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Projects from "./pages/Projects/Projects";
 import Solutions from "./pages/Solutions/Solutions";
 import "./App.css";
@@ -42,6 +44,10 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/products" element={<Product />} />
+            <Route path="/product-detail" element={<ProductDetail />} />
+            <Route path="/product/mebar-pro-550" element={<ProductDetail />} />
             <Route path="/solutions" element={<Solutions />} />
             <Route path="/solution" element={<Solutions />} />
             <Route path="/projects" element={<Projects />} />
