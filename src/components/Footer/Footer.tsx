@@ -18,7 +18,7 @@ const footerGroups = [
     links: [
       { label: "About us", to: "/about" },
       { label: "Projects", to: "/projects" },
-      { label: "FAQ", to: "/" },
+      { label: "FAQ", to: "/faq" },
       { label: "Blog", to: "/" },
     ],
   },
@@ -27,8 +27,8 @@ const footerGroups = [
     links: [
       { label: "Contact us", to: "/contact" },
       { label: "Get a quote", to: "/contact" },
-      { label: "Installation", to: "/" },
-      { label: "Warranty", to: "/" },
+      { label: "Installation", to: "/solutions" },
+      { label: "Warranty", to: "/faq" },
     ],
   },
 ];

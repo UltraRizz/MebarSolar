@@ -7,8 +7,9 @@ const menuLinks = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "Products", to: "/#product" },
-  { label: "Solutions", to: "/#solutions" },
+  { label: "Solutions", to: "/solutions" },
   { label: "Projects", to: "/projects" },
+  { label: "FAQ", to: "/faq" },
   { label: "Contact", to: "/contact" },
 ];
 
