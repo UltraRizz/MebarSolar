@@ -182,6 +182,7 @@
 .product-sheet strong {
   display: block;
   line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .product-sheet small {
@@ -411,14 +412,83 @@
   }
 }
 
+@media (max-width: 42rem) {
+  .product-page {
+    padding-block-start: 2.2rem;
+  }
+
+  .product-showcase {
+    gap: 2.1rem;
+    padding-block: 2.3rem 2rem;
+  }
+
+  .product-panel-strip {
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 0.45rem;
+    white-space: normal;
+  }
+
+  .product-feature,
+  .product-description {
+    gap: 1.6rem;
+  }
+
+  .product-brief strong {
+    margin-block-start: 0.85rem;
+  }
+
+  .product-brief a {
+    margin-block-start: 0.95rem;
+  }
+
+  .product-description {
+    padding-block: 1.6rem 3rem;
+  }
+
+  .product-description-title {
+    gap: 1rem;
+  }
+
+  .product-description-copy {
+    gap: 1rem;
+  }
+
+  .product-details {
+    gap: 2.2rem;
+    margin-block-end: 3rem;
+    padding: 2.2rem var(--page-gutter) 2.6rem;
+  }
+
+  .product-key-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-specifications dl div {
+    grid-template-columns: 1fr;
+    gap: 0.28rem;
+  }
+
+  .product-specifications dd {
+    text-align: left;
+  }
+
+  .product-footer-cta-inner {
+    display: grid;
+    justify-items: start;
+    gap: 1rem;
+    padding-block: 2.5rem;
+  }
+}
+
 @media (max-width: 35rem) {
   .product-showcase {
-    gap: 2.4rem;
+    gap: 1.9rem;
   }
 
   .product-panel-strip {
     gap: 0.28rem;
-    font-size: clamp(1.05rem, 6.9vw, 1.9rem);
+    font-size: clamp(1.25rem, 7.4vw, 1.85rem);
   }
 
   .product-panel-strip span {
@@ -426,7 +496,15 @@
   }
 
   .product-hero-image img {
-    aspect-ratio: 1.25 / 1;
+    aspect-ratio: 1.12 / 1;
+  }
+
+  .product-description h1,
+  .product-key-elements h2,
+  .product-specifications h2,
+  .product-applications h2,
+  .product-footer-cta h2 {
+    max-width: 10em;
   }
 
   .product-details {
@@ -447,8 +525,8 @@
     text-align: left;
   }
 
-  .product-footer-cta-inner {
-    display: grid;
-    justify-items: start;
+  .product-footer-cta a {
+    width: 100%;
+    padding-block-end: 0.65rem;
   }
 }
