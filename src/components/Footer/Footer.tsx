@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import footerMap from "../../assets/images/Footer/map.png";
 import ultraLogo from "../../assets/images/Footer/Ultra.png";
 import "./Footer.css";
 
@@ -60,12 +59,6 @@ const Footer: React.FC = () => {
               </nav>
             ))}
           </div>
-
-          <img
-            className="footer-map"
-            src={footerMap}
-            alt="Map showing the service location in Bhutan"
-          />
         </div>
 
         <div className="footer-bottom">
