@@ -10,16 +10,33 @@
   inset-block-start: clamp(0.75rem, 1.8vw, 1.35rem);
   inset-inline-start: clamp(1rem, 3vw, 3rem);
   z-index: 55;
-  display: inline-flex;
-  align-items: center;
+  display: grid;
   pointer-events: auto;
   transition: opacity 220ms ease, transform 220ms ease;
 }
 
 .brand img {
+  grid-area: 1 / 1;
   display: block;
   width: clamp(4.4rem, 6.2vw, 6.3rem);
   height: auto;
+  transition: opacity 260ms ease;
+}
+
+.brand-logo-dark {
+  opacity: 0;
+}
+
+.brand-logo-light {
+  opacity: 1;
+}
+
+.brand.tone-light .brand-logo-dark {
+  opacity: 1;
+}
+
+.brand.tone-light .brand-logo-light {
+  opacity: 0;
 }
 
 .brand:hover {
@@ -34,7 +51,7 @@
   inset-inline-end: 0;
   z-index: 55;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto minmax(7rem, 1fr) auto;
   justify-items: center;
   width: var(--rail-width);
   padding-block: clamp(1.6rem, 3.2vw, 2.6rem);
@@ -55,7 +72,7 @@
   color: var(--color-surface);
   cursor: pointer;
   font-family: var(--font-cta);
-  font-size: var(--fs-caption);
+  font-size: clamp(0.78rem, 0.9vw, 0.95rem);
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -65,7 +82,7 @@
 .rail-menu-trigger {
   display: grid;
   justify-items: center;
-  gap: 0.62rem;
+  gap: 0.72rem;
   padding: 0;
 }
 
@@ -101,8 +118,8 @@
 .menu-icon {
   position: relative;
   display: block;
-  width: 2rem;
-  height: 1.05rem;
+  width: 2.35rem;
+  height: 1.2rem;
 }
 
 .menu-icon::before,
@@ -139,7 +156,7 @@
 }
 
 .menu-icon span {
-  width: 1.95rem;
+  width: 2.3rem;
 }
 
 .menu-icon span:first-child {
@@ -166,7 +183,7 @@
 
 .rail-menu-trigger:hover .menu-icon::before,
 .rail-menu-trigger.is-active .menu-icon::before {
-  width: 1.95rem;
+  width: 2.3rem;
 }
 
 .rail-menu-trigger:hover .menu-icon span,
@@ -211,8 +228,59 @@
   padding: 0;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  font-size: clamp(1.1rem, 1.38vw, 1.42rem);
   text-transform: uppercase;
+}
+
+.rail-progress {
+  position: relative;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  width: 0.1rem;
+  margin-block: clamp(1.4rem, 3vw, 2.6rem);
+  opacity: 0.95;
+}
+
+.rail-progress-segment {
+  --progress-tone: var(--color-surface);
+
+  position: relative;
+  flex: 1 1 0;
+  display: block;
+}
+
+.rail-progress-segment::before,
+.rail-progress-segment::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  background: var(--progress-tone);
+  transition: background 260ms ease, transform 120ms linear, opacity 260ms ease;
+}
+
+.rail-progress-segment::before {
+  inset-block-start: 0;
+  height: min(0.07rem, 58%);
+}
+
+.rail-progress-segment::after {
+  inset: -0.015rem 0;
+  transform: scaleY(var(--segment-fill, 0));
+  transform-origin: top center;
+}
+
+.rail-progress-segment.tone-light {
+  --progress-tone: var(--color-text);
+}
+
+.rail-progress-segment.tone-dark {
+  --progress-tone: var(--color-primary);
+}
+
+.rail-progress-segment.tone-image {
+  --progress-tone: var(--color-surface);
 }
 
 .menu-is-open {

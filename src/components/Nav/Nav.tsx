@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logoImage from "../../assets/images/home/Logo.png";
+import logoLightImage from "../../assets/images/home/Logo_white.png";
 import { products } from "../../data";
 import "./Nav.css";
 
@@ -20,6 +21,7 @@ const railWords = {
   menu: "Menu",
   products: "Products",
 };
+const progressSegmentCount = 120;
 
 const parseRgb = (color: string) => {
   const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
@@ -106,7 +108,15 @@ const Nav: React.FC = () => {
     Array.from({ length: railWords.products.length }, () => "image"),
   );
   const [iconTone, setIconTone] = useState<RailTone>("image");
+  const [logoTone, setLogoTone] = useState<RailTone>("image");
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [animatedScrollProgress, setAnimatedScrollProgress] = useState(0);
+  const [progressTones, setProgressTones] = useState<RailTone[]>(
+    Array.from({ length: progressSegmentCount }, () => "image"),
+  );
+  const brandRef = useRef<HTMLAnchorElement>(null);
   const railRef = useRef<HTMLDivElement>(null);
+  const progressTargetRef = useRef(0);
   const location = useLocation();
   const isProductRoute = location.pathname.startsWith("/product");
   const isProductDetailRoute =
@@ -148,10 +158,17 @@ const Nav: React.FC = () => {
       cancelAnimationFrame(frame);
 
       frame = requestAnimationFrame(() => {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const nextProgress = maxScroll > 0 ? Math.min(window.scrollY / maxScroll, 1) : 0;
+        progressTargetRef.current = nextProgress;
+        setScrollProgress(nextProgress);
+
         if (menuOpen) {
           setMenuTones(Array.from({ length: railWords.menu.length }, () => "dark"));
           setProductTones(Array.from({ length: railWords.products.length }, () => "dark"));
           setIconTone("dark");
+          setLogoTone("dark");
+          setProgressTones(Array.from({ length: progressSegmentCount }, () => "dark"));
           return;
         }
 
@@ -182,6 +199,32 @@ const Nav: React.FC = () => {
             ),
           );
         }
+
+        const brand = brandRef.current;
+
+        if (brand) {
+          const rect = brand.getBoundingClientRect();
+
+          setLogoTone(
+            getBackgroundToneAtPoint(
+              rect.left + rect.width / 2,
+              rect.top + rect.height / 2,
+            ),
+          );
+        }
+
+        setProgressTones(
+          Array.from(
+            railRef.current?.querySelectorAll<HTMLElement>(".rail-progress-segment") ?? [],
+          ).map((segment) => {
+            const rect = segment.getBoundingClientRect();
+
+            return getBackgroundToneAtPoint(
+              rect.left + rect.width / 2,
+              rect.top + rect.height / 2,
+            );
+          }),
+        );
       });
     };
 
@@ -197,11 +240,41 @@ const Nav: React.FC = () => {
     };
   }, [location.pathname, menuOpen]);
 
+  useEffect(() => {
+    let frame = 0;
+
+    const animateProgress = () => {
+      setAnimatedScrollProgress((currentProgress) => {
+        const nextProgress =
+          currentProgress + (progressTargetRef.current - currentProgress) * 0.14;
+
+        if (Math.abs(progressTargetRef.current - nextProgress) < 0.0015) {
+          return progressTargetRef.current;
+        }
+
+        frame = requestAnimationFrame(animateProgress);
+        return nextProgress;
+      });
+    };
+
+    frame = requestAnimationFrame(animateProgress);
+
+    return () => {
+      cancelAnimationFrame(frame);
+    };
+  }, [scrollProgress]);
+
   return (
     <>
       <header className="site-nav">
-        <Link className="brand" to="/" aria-label="Mebar Solar home">
-          <img src={logoImage} alt="Mebar Solar" />
+        <Link
+          ref={brandRef}
+          className={`brand tone-${logoTone}`}
+          to="/"
+          aria-label="Mebar Solar home"
+        >
+          <img className="brand-logo-dark" src={logoImage} alt="Mebar Solar" />
+          <img className="brand-logo-light" src={logoLightImage} alt="" aria-hidden="true" />
         </Link>
 
         <div
@@ -224,6 +297,23 @@ const Nav: React.FC = () => {
               <RailWord text={railWords.menu} tones={menuTones} />
             </span>
           </button>
+
+          <div className="rail-progress" aria-hidden="true">
+            {Array.from({ length: progressSegmentCount }).map((_, index) => {
+              const segmentFill = Math.min(
+                Math.max(animatedScrollProgress * progressSegmentCount - index, 0),
+                1,
+              );
+
+              return (
+                <span
+                  className={`rail-progress-segment tone-${progressTones[index] ?? "image"}`}
+                  key={index}
+                  style={{ "--segment-fill": segmentFill } as React.CSSProperties}
+                />
+              );
+            })}
+          </div>
 
           <button
             className={`rail-link${isProductRoute ? " is-current" : ""}${panelMode === "products" && menuOpen ? " is-active" : ""}`}
