@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import heroImage from "../../assets/images/home/hero.jpg";
-import productImage from "../../assets/images/home/section1.jpg";
+import productImage from "../../assets/images/home/section1.png";
 import trustImage from "../../assets/images/home/section2.jpg";
 import productCardImage from "../../assets/images/home/section3.jpg";
 import "./Home.css";
