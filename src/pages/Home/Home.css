@@ -6,7 +6,7 @@
 
 .home-hero {
   display: grid;
-  min-height: 100vh;
+  max-height: 100vh;
   overflow: hidden;
   background: var(--color-accent);
   color: var(--color-surface);
