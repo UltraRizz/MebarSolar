@@ -7,6 +7,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -67,7 +68,7 @@ li {
 }
 
 .page-shell {
-  width: min(calc(100% - (var(--page-gutter) * 2)), var(--container));
+  width: min(calc(100% - var(--page-gutter) - var(--page-gutter)), var(--container));
   margin: 0 auto;
 }
 

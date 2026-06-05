@@ -104,13 +104,35 @@ const parseStatValue = (value: string) => {
   }
 
   const [, numberPart, suffix] = match;
-  const decimals = numberPart.includes(".") ? numberPart.split(".")[1].length : 0;
+  const decimals = numberPart.includes(".")
+    ? numberPart.split(".")[1].length
+    : 0;
 
   return {
     target: Number(numberPart),
     suffix,
     decimals,
   };
+};
+
+const scrambleText = (text: string, progress: number) => {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const revealCount = Math.floor(text.length * progress);
+
+  return text
+    .split("")
+    .map((character, index) => {
+      if (character === " ") {
+        return " ";
+      }
+
+      if (index < revealCount) {
+        return character;
+      }
+
+      return characters[Math.floor(Math.random() * characters.length)];
+    })
+    .join("");
 };
 
 const Home: React.FC = () => {
@@ -131,7 +153,9 @@ const Home: React.FC = () => {
       return undefined;
     }
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     if (reduceMotion) {
       return undefined;
@@ -202,7 +226,10 @@ const Home: React.FC = () => {
           ),
       });
 
-      const statElements = gsap.utils.toArray<HTMLElement>(".stat-value", statsSection);
+      const statElements = gsap.utils.toArray<HTMLElement>(
+        ".stat-card",
+        statsSection,
+      );
 
       const statsTimeline = gsap.timeline({
         scrollTrigger: {
@@ -212,11 +239,16 @@ const Home: React.FC = () => {
         },
       });
 
-      statElements.forEach((element, index) => {
-        const finalValue = element.dataset.statValue ?? element.textContent ?? "";
+      statElements.forEach((card, index) => {
+        const valueElement = card.querySelector<HTMLElement>(".stat-value");
+        const labelElement = card.querySelector<HTMLElement>(".stat-label");
+        const finalValue =
+          valueElement?.dataset.statValue ?? valueElement?.textContent ?? "";
+        const finalLabel =
+          labelElement?.dataset.statLabel ?? labelElement?.textContent ?? "";
         const parsed = parseStatValue(finalValue);
 
-        if (!parsed) {
+        if (!parsed || !valueElement || !labelElement) {
           return;
         }
 
@@ -224,16 +256,22 @@ const Home: React.FC = () => {
           { progress: 0 },
           {
             progress: 1,
-            duration: 1.12,
+            duration: 1.75,
             ease: "power3.out",
             onUpdate() {
               const progress = this.targets()[0].progress as number;
-              const noise = Math.random() * parsed.target * 0.32 * (1 - progress);
-              const current = Math.min(parsed.target, parsed.target * progress + noise);
-              element.textContent = `${current.toFixed(parsed.decimals)}${parsed.suffix}`;
+              const noise =
+                Math.random() * parsed.target * 0.32 * (1 - progress);
+              const current = Math.min(
+                parsed.target,
+                parsed.target * progress + noise,
+              );
+              valueElement.textContent = `${current.toFixed(parsed.decimals)}${parsed.suffix}`;
+              labelElement.textContent = scrambleText(finalLabel, progress);
             },
             onComplete() {
-              element.textContent = finalValue;
+              valueElement.textContent = finalValue;
+              labelElement.textContent = finalLabel;
             },
           },
           index * 0.08,
@@ -284,17 +322,27 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          <span ref={heroLineRef} className="home-hero-line" aria-hidden="true" />
+          <span
+            ref={heroLineRef}
+            className="home-hero-line"
+            aria-hidden="true"
+          />
         </div>
       </section>
 
-      <section ref={statsRef} className="home-stats page-shell" aria-label="Company metrics">
+      <section
+        ref={statsRef}
+        className="home-stats page-shell"
+        aria-label="Company metrics"
+      >
         {stats.map((stat) => (
           <article className="stat-card" key={stat.label}>
             <strong className="stat-value" data-stat-value={stat.value}>
               {stat.value}
             </strong>
-            <span>{stat.label}</span>
+            <span className="stat-label" data-stat-label={stat.label}>
+              {stat.label}
+            </span>
           </article>
         ))}
       </section>
@@ -330,7 +378,10 @@ const Home: React.FC = () => {
           aria-labelledby="home-trust-title"
         >
           <figure className="trust-figure">
-            <img src={productCardOneImage1 } alt="Solar panel field beside green grass" />
+            <img
+              src={productCardOneImage1}
+              alt="Solar panel field beside green grass"
+            />
             <figcaption>Factory / Installation photo</figcaption>
           </figure>
 
@@ -397,7 +448,11 @@ const Home: React.FC = () => {
                 </dl>
 
                 <div className="product-card-actions">
-                  <AnimatedButton to="/product-detail" theme="dark" className="product-card-button">
+                  <AnimatedButton
+                    to="/product-detail"
+                    theme="dark"
+                    className="product-card-button"
+                  >
                     View details
                   </AnimatedButton>
                 </div>
@@ -458,7 +513,10 @@ const Home: React.FC = () => {
               </label>
               <label>
                 <span>Customer Type</span>
-                <input type="text" placeholder="Homeowner / Business / Institution" />
+                <input
+                  type="text"
+                  placeholder="Homeowner / Business / Institution"
+                />
               </label>
               <label>
                 <span>Interested Product / Service</span>

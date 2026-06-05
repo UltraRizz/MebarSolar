@@ -342,6 +342,9 @@
 }
 
 @media (max-width: 56rem) {
+  .product-detail-page {
+    padding-top: 10%;
+  }
   .product-detail-layout {
     grid-template-columns: 1fr;
   }
@@ -374,6 +377,7 @@
   }
 
   .product-detail-order-cta .mab-button {
-    width: 100%;
+    width: calc(var(--mab-label-width) + var(--mab-gap) + var(--mab-plus-size));
+    max-width: 100%;
   }
 }

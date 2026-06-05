@@ -6,7 +6,7 @@
 
 .about-hero {
   display: grid;
-  min-height: clamp(16rem, 28svh, 24rem);
+  min-height: clamp(16rem, 28vh, 24rem);
   overflow: hidden;
   background: var(--color-accent);
   color: var(--color-surface);

@@ -130,17 +130,17 @@ const Nav: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [panelMode, setPanelMode] = useState<PanelMode>("menu");
   const [menuTones, setMenuTones] = useState<RailTone[]>(
-    Array.from({ length: railWords.menu.length }, () => "image"),
+    Array.from({ length: railWords.menu.length }, () => "light"),
   );
   const [productTones, setProductTones] = useState<RailTone[]>(
-    Array.from({ length: railWords.products.length }, () => "image"),
+    Array.from({ length: railWords.products.length }, () => "light"),
   );
-  const [iconTone, setIconTone] = useState<RailTone>("image");
-  const [logoTone, setLogoTone] = useState<RailTone>("image");
+  const [iconTone, setIconTone] = useState<RailTone>("light");
+  const [logoTone, setLogoTone] = useState<RailTone>("light");
   const [scrollProgress, setScrollProgress] = useState(0);
   const [animatedScrollProgress, setAnimatedScrollProgress] = useState(0);
   const [progressTones, setProgressTones] = useState<RailTone[]>(
-    Array.from({ length: progressSegmentCount }, () => "image"),
+    Array.from({ length: progressSegmentCount }, () => "light"),
   );
   const brandRef = useRef<HTMLAnchorElement>(null);
   const railRef = useRef<HTMLDivElement>(null);
@@ -346,7 +346,7 @@ const Nav: React.FC = () => {
           <button
             className={`rail-link${isProductRoute ? " is-current" : ""}${panelMode === "products" && menuOpen ? " is-active" : ""}`}
             type="button"
-            aria-label="Open products"
+            aria-label="Open product menu"
             aria-expanded={menuOpen && panelMode === "products"}
             onClick={() => (menuOpen && panelMode === "products" ? closePanel() : openPanel("products"))}
           >
@@ -385,13 +385,13 @@ const Nav: React.FC = () => {
                     <span>{link.label}</span>
                   </NavLink>
                 ))}
-                <button
+                <NavLink
                   className={`menu-mode-link${isProductRoute ? " is-active" : ""}`}
-                  type="button"
-                  onClick={() => setPanelMode("products")}
+                  to="/products"
+                  onClick={closePanel}
                 >
                   <span>Products</span>
-                </button>
+                </NavLink>
               </nav>
             </div>
           ) : (

@@ -21,6 +21,7 @@
   letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
+  white-space: nowrap;
   cursor: pointer;
 }
 
@@ -58,7 +59,7 @@
   justify-content: center;
   width: var(--mab-label-width);
   min-width: 0;
-  padding-inline: 1.2rem;
+  padding-inline: clamp(0.85rem, 1.4vw, 1.2rem);
   overflow: hidden;
   transform: translateX(0);
 }
@@ -168,10 +169,28 @@
   }
 }
 
+@media (max-width: 64rem) {
+  .mab-button {
+    --mab-label-width: clamp(8.4rem, 20vw, 10.8rem);
+    --mab-plus-size: clamp(2.45rem, 4vw, 3rem);
+    --mab-gap: 0.28rem;
+
+    max-width: 100%;
+    font-size: clamp(0.66rem, 1.25vw, 0.74rem);
+  }
+
+  .mab-button-plus {
+    font-size: clamp(0.95rem, 1.8vw, 1.08rem);
+  }
+}
+
 @media (max-width: 35rem) {
   .mab-button {
-    --mab-label-width: calc(100% - var(--mab-gap) - var(--mab-plus-size));
+    --mab-label-width: clamp(8rem, 50vw, 10.4rem);
+    --mab-plus-size: 2.55rem;
+    --mab-gap: 0.25rem;
 
-    width: 100%;
+    width: calc(var(--mab-label-width) + var(--mab-gap) + var(--mab-plus-size));
+    font-size: 0.68rem;
   }
 }

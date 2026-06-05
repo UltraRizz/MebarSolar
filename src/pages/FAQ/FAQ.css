@@ -6,7 +6,7 @@
 
 .faq-hero {
   display: grid;
-  min-height: clamp(16rem, 28svh, 24rem);
+  min-height: clamp(16rem, 28vh, 24rem);
   overflow: hidden;
   background: var(--color-accent);
   color: var(--color-surface);
@@ -213,7 +213,7 @@
 
 @media (max-width: 35rem) {
   .faq-hero {
-    min-height: clamp(20rem, 52svh, 28rem);
+    min-height: clamp(20rem, 52vh, 28rem);
   }
 
   .faq-hero-shade {

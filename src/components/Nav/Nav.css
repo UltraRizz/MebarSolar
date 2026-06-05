@@ -1,18 +1,22 @@
 .site-nav {
   position: fixed;
-  inset: 0 0 auto 0;
+  top: 0;
+  right: 0;
+  left: 0;
   z-index: 50;
   pointer-events: none;
 }
 
 .brand {
   position: fixed;
-  inset-block-start: clamp(0.75rem, 1.8vw, 1.35rem);
-  inset-inline-start: clamp(1rem, 3vw, 3rem);
+  top: clamp(0.75rem, 1.8vw, 1.35rem);
+  left: clamp(1rem, 3vw, 3rem);
   z-index: 55;
   display: grid;
   pointer-events: auto;
-  transition: opacity 220ms ease, transform 220ms ease;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
 }
 
 .brand img {
@@ -47,8 +51,9 @@
   --rail-width: clamp(4rem, 5vw, 5.35rem);
 
   position: fixed;
-  inset-block: 0;
-  inset-inline-end: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   z-index: 55;
   display: grid;
   grid-template-rows: auto minmax(7rem, 1fr) auto;
@@ -58,11 +63,13 @@
   background: transparent;
   color: var(--color-surface);
   pointer-events: auto;
-  transition: inset-inline-end 940ms cubic-bezier(0.22, 1, 0.36, 1), color 180ms ease;
+  transition:
+    right 940ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms ease;
 }
 
 .nav-rail.is-open {
-  inset-inline-end: calc(75vw);
+  right: 75vw;
 }
 
 .rail-trigger,
@@ -125,12 +132,16 @@
 .menu-icon::before,
 .menu-icon span {
   position: absolute;
-  inset-inline-start: 0;
+  left: 0;
   display: block;
   height: 0.08rem;
   background: currentColor;
   transform-origin: left center;
-  transition: inset-block-start 260ms ease, transform 260ms ease, width 260ms ease, background 180ms ease;
+  transition:
+    top 260ms ease,
+    transform 260ms ease,
+    width 260ms ease,
+    background 180ms ease;
 }
 
 .menu-icon.tone-light::before,
@@ -150,7 +161,7 @@
 
 .menu-icon::before {
   content: "";
-  inset-block-start: 50%;
+  top: 50%;
   width: 0;
   transform: translateY(-50%);
 }
@@ -160,11 +171,11 @@
 }
 
 .menu-icon span:first-child {
-  inset-block-start: 0.25rem;
+  top: 0.25rem;
 }
 
 .menu-icon span:last-child {
-  inset-block-start: 0.72rem;
+  top: 0.72rem;
 }
 
 .rail-menu-trigger:hover .rail-letter,
@@ -188,7 +199,7 @@
 
 .rail-menu-trigger:hover .menu-icon span,
 .rail-menu-trigger.is-active .menu-icon span {
-  inset-block-start: 50%;
+  top: 50%;
   width: 0.64rem;
 }
 
@@ -203,15 +214,15 @@
 }
 
 .nav-rail.is-open .menu-icon::before {
-  inset-inline-start: auto;
-  inset-inline-end: 0;
+  left: auto;
+  right: 0;
   transform: translateY(-50%);
   transform-origin: right center;
 }
 
 .nav-rail.is-open .menu-icon span {
-  inset-inline-start: auto;
-  inset-inline-end: 0;
+  left: auto;
+  right: 0;
   transform-origin: right center;
 }
 
@@ -255,18 +266,25 @@
 .rail-progress-segment::after {
   content: "";
   position: absolute;
-  inset-inline: 0;
+  left: 0;
+  right: 0;
   background: var(--progress-tone);
-  transition: background 260ms ease, transform 120ms linear, opacity 260ms ease;
+  transition:
+    background 260ms ease,
+    transform 120ms linear,
+    opacity 260ms ease;
 }
 
 .rail-progress-segment::before {
-  inset-block-start: 0;
+  top: 0;
   height: min(0.07rem, 58%);
 }
 
 .rail-progress-segment::after {
-  inset: -0.015rem 0;
+  top: -0.015rem;
+  right: 0;
+  bottom: -0.015rem;
+  left: 0;
   transform: scaleY(var(--segment-fill, 0));
   transform-origin: top center;
 }
@@ -289,7 +307,10 @@
 
 .menu-overlay {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 45;
   display: grid;
   grid-template-columns: minmax(16rem, 25vw) minmax(0, 1fr);
@@ -306,7 +327,10 @@
 
 .menu-scrim {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   border: 0;
   background: rgba(20, 19, 20, 0);
   cursor: pointer;
@@ -321,7 +345,7 @@
 .menu-panel {
   position: relative;
   z-index: 1;
-  min-height: 100svh;
+  min-height: 100vh;
 }
 
 .menu-context {
@@ -345,7 +369,8 @@
   grid-column: 2;
   display: grid;
   align-content: center;
-  padding: clamp(2rem, 6vw, 5.5rem) clamp(6.4rem, 10vw, 10rem) clamp(2rem, 6vw, 5.5rem) clamp(3rem, 7vw, 6rem);
+  padding: clamp(2rem, 6vw, 5.5rem) clamp(6.4rem, 10vw, 10rem)
+    clamp(2rem, 6vw, 5.5rem) clamp(3rem, 7vw, 6rem);
   background: var(--color-section);
   color: var(--color-text);
   transform: translateX(100%);
@@ -389,7 +414,10 @@
   font-size: clamp(2.8rem, 5.8vw, 6.25rem);
   font-weight: 700;
   line-height: 0.98;
-  transition: color 200ms ease, transform 240ms ease, opacity 200ms ease;
+  transition:
+    color 200ms ease,
+    transform 240ms ease,
+    opacity 200ms ease;
 }
 
 .menu-links a::after,
@@ -400,7 +428,10 @@
   height: 0.12rem;
   background: rgba(20, 19, 20, 0.32);
   transform: translateY(-0.15em);
-  transition: width 220ms ease, background 220ms ease, transform 220ms ease;
+  transition:
+    width 220ms ease,
+    background 220ms ease,
+    transform 220ms ease;
 }
 
 .menu-links a:hover,
@@ -442,7 +473,9 @@
   font-family: var(--font-cta);
   font-size: var(--fs-body-compact);
   font-weight: 800;
-  transition: color 180ms ease, transform 180ms ease;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
 }
 
 .menu-back:hover {
@@ -466,7 +499,10 @@
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 0.9;
-  transition: color 180ms ease, transform 220ms ease, opacity 180ms ease;
+  transition:
+    color 180ms ease,
+    transform 220ms ease,
+    opacity 180ms ease;
 }
 
 .product-menu-grid a small {
@@ -486,18 +522,75 @@
   transform: translateX(0.35rem);
 }
 
-@media (max-width: 56rem) {
+@media (max-width: 64rem) {
   .brand {
-    inset-block-start: 0.8rem;
-    inset-inline-start: 1rem;
+    top: 1rem;
+    left: 1rem;
   }
 
   .nav-rail {
-    width: 3.6rem;
+    top: 1rem;
+    right: clamp(1rem, 2.8vw, 2rem);
+    bottom: auto;
+    left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(0.8rem, 2vw, 1.35rem);
+    width: auto;
+    padding: 0;
   }
 
   .nav-rail.is-open {
-    inset-inline-end: 0;
+    right: clamp(1rem, 2.8vw, 2rem);
+  }
+
+  .rail-trigger,
+  .rail-link {
+    font-size: clamp(0.76rem, 1.6vw, 0.9rem);
+  }
+
+  .rail-menu-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .rail-menu-label,
+  .rail-products-label,
+  .rail-link {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+
+  .rail-link {
+    grid-row: auto;
+  }
+
+  .rail-progress {
+    display: none;
+  }
+
+  .menu-icon {
+    width: 1.65rem;
+    height: 0.8rem;
+  }
+
+  .menu-icon span {
+    width: 1.62rem;
+  }
+
+  .menu-icon span:first-child {
+    top: 0.18rem;
+  }
+
+  .menu-icon span:last-child {
+    top: 0.58rem;
+  }
+
+  .rail-menu-trigger:hover .menu-icon::before,
+  .rail-menu-trigger.is-active .menu-icon::before {
+    width: 1.62rem;
   }
 
   .menu-overlay {
@@ -510,7 +603,9 @@
 
   .menu-panel {
     grid-column: 1;
-    padding: 5.5rem 4.8rem 2rem 1.25rem;
+    align-content: start;
+    padding: clamp(6rem, 11vw, 8rem) clamp(1.25rem, 5vw, 3rem)
+      clamp(2rem, 5vw, 4rem);
   }
 
   .menu-links a,
@@ -525,5 +620,64 @@
 
   .product-menu-grid a span {
     font-size: clamp(2.4rem, 13vw, 4.4rem);
+  }
+
+  .menu-is-open .brand-logo-dark {
+    opacity: 1;
+  }
+
+  .menu-is-open .brand-logo-light {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 35rem) {
+  .brand {
+    top: 1.05rem;
+    left: 1.25rem;
+  }
+
+  .brand img {
+    width: 4.1rem;
+  }
+
+  .nav-rail,
+  .nav-rail.is-open {
+    top: 1.05rem;
+    right: 1.25rem;
+    bottom: auto;
+    left: auto;
+    gap: 0.7rem;
+  }
+
+  .rail-trigger,
+  .rail-link {
+    font-size: 0.72rem;
+  }
+
+  .rail-menu-trigger {
+    gap: 0.42rem;
+  }
+
+  .menu-icon {
+    width: 1.32rem;
+    height: 0.66rem;
+  }
+
+  .menu-icon span {
+    width: 1.3rem;
+  }
+
+  .menu-icon span:first-child {
+    top: 0.12rem;
+  }
+
+  .menu-icon span:last-child {
+    top: 0.5rem;
+  }
+
+  .rail-menu-trigger:hover .menu-icon::before,
+  .rail-menu-trigger.is-active .menu-icon::before {
+    width: 1.3rem;
   }
 }
