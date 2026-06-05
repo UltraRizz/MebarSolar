@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import heroImage from "../../assets/images/about/section.png";
 import "./FAQ.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type FaqItem = {
   id: string;
@@ -135,26 +139,195 @@ const faqSections: { title: string; items: FaqItem[] }[] = [
 ];
 
 const FAQ: React.FC = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
+  const activeFaqIdRef = useRef("installation-time");
+  const manualScrollUntilRef = useRef(0);
+  const manualTargetFaqIdRef = useRef<string | null>(null);
+  const manualReleaseTimerRef = useRef<number | null>(null);
+  const manualScrollTweenRef = useRef<gsap.core.Tween | null>(null);
   const [openItems, setOpenItems] = useState<Set<string>>(
     () => new Set(["installation-time"])
   );
 
-  const toggleItem = (id: string) => {
-    setOpenItems((current) => {
-      const next = new Set(current);
+  const setActiveFaq = (id: string) => {
+    if (activeFaqIdRef.current === id) {
+      return;
+    }
 
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
+    activeFaqIdRef.current = id;
+    setOpenItems(new Set([id]));
+  };
+
+  useLayoutEffect(() => {
+    const page = pageRef.current;
+
+    if (!page) {
+      return undefined;
+    }
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reduceMotion) {
+      return undefined;
+    }
+
+    let frame = 0;
+    let removeResizeListener = () => {};
+    let pageTrigger: ScrollTrigger | undefined;
+
+    const context = gsap.context(() => {
+      const items = gsap.utils.toArray<HTMLElement>(".faq-item[data-faq-id]");
+
+      const updateActiveItem = () => {
+        if (
+          manualTargetFaqIdRef.current &&
+          Date.now() < manualScrollUntilRef.current
+        ) {
+          setActiveFaq(manualTargetFaqIdRef.current);
+          return;
+        }
+
+        manualTargetFaqIdRef.current = null;
+        cancelAnimationFrame(frame);
+
+        frame = requestAnimationFrame(() => {
+          if (!items.length) {
+            return;
+          }
+
+          const activationY = window.innerHeight * 0.4;
+          const scoredItems = items.map((item) => {
+            const rect = item.getBoundingClientRect();
+
+            return {
+              id: item.dataset.faqId ?? "",
+              item,
+              distance: Math.abs(rect.top - activationY),
+              passedTop: rect.top <= activationY,
+            };
+          });
+
+          const active =
+            scoredItems
+              .filter((entry) => entry.passedTop)
+              .sort((a, b) => a.distance - b.distance)[0] ??
+            scoredItems.sort((a, b) => a.distance - b.distance)[0];
+
+          if (!active?.id) {
+            return;
+          }
+
+          setActiveFaq(active.id);
+
+          if (!active.item.classList.contains("has-scroll-highlight")) {
+            active.item.classList.add("has-scroll-highlight");
+            gsap.fromTo(
+              active.item,
+              { y: 14, autoAlpha: 0.76 },
+              { y: 0, autoAlpha: 1, duration: 0.65, ease: "power3.out" },
+            );
+          }
+        });
+      };
+
+      pageTrigger = ScrollTrigger.create({
+        trigger: page,
+        start: "top top",
+        end: "bottom bottom",
+        onUpdate: updateActiveItem,
+        onRefresh: updateActiveItem,
+      });
+
+      window.addEventListener("resize", updateActiveItem);
+      removeResizeListener = () => window.removeEventListener("resize", updateActiveItem);
+      updateActiveItem();
+    }, page);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      if (manualReleaseTimerRef.current) {
+        window.clearTimeout(manualReleaseTimerRef.current);
       }
+      manualScrollTweenRef.current?.kill();
+      removeResizeListener();
+      pageTrigger?.kill();
+      context.revert();
+    };
+  }, []);
 
-      return next;
+  useLayoutEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
+    return () => {
+      cancelAnimationFrame(frame);
+    };
+  }, [openItems]);
+
+  const toggleItem = (id: string) => {
+    if (manualReleaseTimerRef.current) {
+      window.clearTimeout(manualReleaseTimerRef.current);
+    }
+
+    manualScrollTweenRef.current?.kill();
+    manualTargetFaqIdRef.current = id;
+    manualScrollUntilRef.current = Date.now() + 2400;
+    activeFaqIdRef.current = id;
+    setOpenItems(new Set([id]));
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const item = pageRef.current?.querySelector<HTMLElement>(
+          `.faq-item[data-faq-id="${id}"]`,
+        );
+
+        if (!item) {
+          return;
+        }
+
+        const activationY = window.innerHeight * 0.4;
+        const maxScroll = Math.max(
+          document.documentElement.scrollHeight - window.innerHeight,
+          0,
+        );
+        const targetTop = Math.min(
+          Math.max(item.getBoundingClientRect().top + window.scrollY - activationY, 0),
+          maxScroll,
+        );
+        const scrollState = { y: window.scrollY };
+
+        manualScrollTweenRef.current = gsap.to(scrollState, {
+          y: targetTop,
+          duration: 0.85,
+          ease: "power3.out",
+          onUpdate: () => {
+            window.scrollTo(0, scrollState.y);
+            setActiveFaq(id);
+          },
+          onComplete: () => {
+            setActiveFaq(id);
+            manualScrollUntilRef.current = 0;
+            manualTargetFaqIdRef.current = null;
+            manualScrollTweenRef.current = null;
+            ScrollTrigger.refresh();
+          },
+        });
+
+        manualReleaseTimerRef.current = window.setTimeout(() => {
+          manualScrollUntilRef.current = 0;
+          manualTargetFaqIdRef.current = null;
+          manualScrollTweenRef.current = null;
+          ScrollTrigger.refresh();
+        }, 1300);
+      });
     });
   };
 
   return (
-    <div className="faq-page">
+    <div ref={pageRef} className="faq-page">
       <section className="faq-hero" aria-labelledby="faq-hero-title">
         <img
           className="faq-hero-image"
@@ -193,6 +366,7 @@ const FAQ: React.FC = () => {
                   return (
                     <article
                       className={`faq-item${isOpen ? " is-open" : ""}`}
+                      data-faq-id={item.id}
                       key={item.id}
                     >
                       <button
@@ -211,9 +385,11 @@ const FAQ: React.FC = () => {
                       <div
                         className="faq-answer"
                         id={`${item.id}-answer`}
-                        hidden={!isOpen}
+                        aria-hidden={!isOpen}
                       >
-                        <p>{item.answer}</p>
+                        <div className="faq-answer-inner">
+                          <p>{item.answer}</p>
+                        </div>
                       </div>
                     </article>
                   );
