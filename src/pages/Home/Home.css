@@ -346,11 +346,7 @@
 }
 
 .product-card-media figcaption {
-  align-self: center;
-  justify-self: center;
-  color: rgba(255, 255, 255, 0.72);
-  font-family: var(--font-body);
-  font-size: var(--fs-caption);
+  display: none;
 }
 
 .product-card-body {

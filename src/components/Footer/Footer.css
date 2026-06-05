@@ -73,7 +73,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  width: min(42vw, 42rem);
+  width: min(34vw, 34rem);
   overflow: visible;
   pointer-events: none;
   z-index: 0;

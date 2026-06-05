@@ -4,6 +4,7 @@ import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import heroImage from "../../assets/images/home/hero.jpg";
 import productImage from "../../assets/images/home/section1.png";
+import productCardOneImage from "../../assets/images/home/section1.jpg";
 import trustImage from "../../assets/images/home/section2.jpg";
 import productCardImage from "../../assets/images/home/section3.jpg";
 import "./Home.css";
@@ -29,7 +30,7 @@ const trustPoints = [
 const products = [
   {
     name: "Mebar Home 400",
-    image: productImage,
+    image: productCardOneImage,
     alt: "Solar panel rows reflecting bright daylight",
     specs: [
       ["Wattage", "400W"],
