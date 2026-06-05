@@ -177,6 +177,14 @@
   box-shadow: var(--shadow-soft);
 }
 
+.product-figure {
+  justify-items: end;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
 .product-figure img,
 .trust-figure img {
   grid-area: 1 / 1;
@@ -186,6 +194,14 @@
   border-radius: var(--image-radius) 0 0 var(--image-radius);
   object-fit: cover;
   transition: transform 400ms ease;
+}
+
+.product-figure img {
+  width: min(100%, 34rem);
+  height: auto;
+  min-height: 0;
+  border-radius: 0;
+  object-fit: contain;
 }
 
 .trust-figure img {
@@ -210,6 +226,10 @@
   color: var(--color-surface);
   font-family: var(--font-body);
   font-size: var(--fs-caption);
+}
+
+.product-figure figcaption {
+  display: none;
 }
 
 .trust-figure figcaption {
