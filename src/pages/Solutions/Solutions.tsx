@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import heroImage from "../../assets/images/about/section.png";
 import "./Solutions.css";
@@ -65,7 +65,9 @@ const Solutions: React.FC = () => {
               <span className="solution-card-icon" aria-hidden="true" />
               <h2>{solution.title}</h2>
               <p>{solution.description}</p>
-              <Link to="/contact">Learn More</Link>
+              <AnimatedButton to="/contact" theme="dark" className="solution-card-button">
+                Learn More
+              </AnimatedButton>
             </article>
           ))}
         </div>

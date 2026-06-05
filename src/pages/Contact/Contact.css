@@ -135,49 +135,6 @@
   grid-column: 1 / -1;
 }
 
-.contact-submit {
-  display: inline-grid;
-  grid-template-columns: max-content auto;
-  align-items: stretch;
-  gap: 0;
-  min-height: clamp(3rem, 4.5vw, 4rem);
-  border: 0;
-  color: var(--color-surface);
-  background: transparent;
-  font-family: var(--font-cta);
-  font-size: var(--fs-caption);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: gap 180ms ease, transform 180ms ease;
-}
-
-.contact-submit:hover {
-  gap: 0.45rem;
-  transform: translateY(-0.12rem);
-}
-
-.contact-submit span {
-  display: grid;
-  place-items: center;
-  min-width: 3.05rem;
-  padding-inline: 1.2rem;
-  background: var(--color-primary);
-}
-
-.contact-submit span:first-child {
-  min-width: clamp(9.5rem, 14vw, 13.6rem);
-}
-
-.contact-submit span:last-child {
-  font-size: clamp(1rem, 1.4vw, 1.25rem);
-}
-
-.contact-submit:hover span {
-  background: var(--color-primary-strong);
-}
-
 .contact-info-card {
   padding: clamp(1.5rem, 2.5vw, 2.2rem);
   border-radius: clamp(0.8rem, 1.6vw, 1.2rem);
@@ -256,6 +213,5 @@
 
   .contact-submit {
     width: 100%;
-    grid-template-columns: minmax(0, 1fr) auto;
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import aboutImage from "../../assets/images/about/section.png";
 import "./About.css";
@@ -228,10 +228,7 @@ const About: React.FC = () => {
       <section className="about-cta" aria-label="Get a quote">
         <div className="page-shell about-cta-inner">
           <h2>Ready to power your home or business with solar?</h2>
-          <Link className="split-button split-button-orange" to="/contact">
-            <span>Get a quote</span>
-            <span aria-hidden="true">+</span>
-          </Link>
+          <AnimatedButton to="/contact">Get a quote</AnimatedButton>
         </div>
       </section>
 

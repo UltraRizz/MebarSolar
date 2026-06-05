@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import heroImage from "../../assets/images/about/section.png";
 import projectOne from "../../assets/project/proj1.jpg";
@@ -161,10 +161,7 @@ const Projects: React.FC = () => {
       <section className="projects-cta" aria-label="Start your solar project">
         <div className="page-shell projects-cta-inner">
           <h2>Want results like these? Start your solar project today.</h2>
-          <Link className="projects-cta-button" to="/contact">
-            <span>Get a quote</span>
-            <span aria-hidden="true">+</span>
-          </Link>
+          <AnimatedButton to="/contact">Get a quote</AnimatedButton>
         </div>
       </section>
 

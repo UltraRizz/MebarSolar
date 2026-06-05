@@ -74,56 +74,6 @@
   margin-block-start: var(--space-lg);
 }
 
-.split-button {
-  display: inline-grid;
-  grid-template-columns: max-content auto;
-  align-items: stretch;
-  gap: 0;
-  border: 0;
-  min-height: clamp(3rem, 4.5vw, 4rem);
-  color: var(--color-surface);
-  background: transparent;
-  font-family: var(--font-cta);
-  font-size: var(--fs-caption);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: gap 180ms ease, transform 180ms ease;
-}
-
-.split-button:hover {
-  gap: 0.45rem;
-  transform: translateY(-0.12rem);
-}
-
-.split-button span {
-  display: grid;
-  place-items: center;
-  min-width: 3.05rem;
-  padding-inline: 1.2rem;
-}
-
-.split-button span:first-child {
-  min-width: clamp(9.5rem, 14vw, 13.6rem);
-}
-
-.split-button span:last-child {
-  font-size: clamp(1rem, 1.4vw, 1.25rem);
-}
-
-.split-button-orange span {
-  background: var(--color-primary);
-}
-
-.split-button-orange:hover span {
-  background: var(--color-primary-strong);
-}
-
-.split-button-dark span {
-  background: var(--color-accent);
-}
-
 .home-stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -210,8 +160,8 @@
   line-height: 1.7;
 }
 
-.home-product .split-button,
-.home-trust .split-button {
+.home-product .mab-button,
+.home-trust .mab-button {
   margin-block-start: var(--space-lg);
 }
 
@@ -424,40 +374,17 @@
 }
 
 .product-card-actions {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: var(--space-xs);
+  display: block;
   margin-block-start: var(--space-lg);
 }
 
-.product-card-actions .split-button {
+.home-page .product-card-actions .mab-button {
+  --mab-label-width: calc(
+    100% - var(--mab-gap) - var(--mab-plus-size)
+  );
+
   width: 100%;
   min-height: clamp(3rem, 4vw, 3.7rem);
-  grid-template-columns: minmax(0, 1fr) auto;
-}
-
-.product-card-actions .split-button span:first-child {
-  min-width: 0;
-}
-
-.product-view-link {
-  display: grid;
-  place-items: center;
-  min-width: clamp(3.8rem, 6vw, 5.2rem);
-  padding-inline: 1rem;
-  background: var(--color-primary);
-  color: var(--color-surface);
-  font-family: var(--font-cta);
-  font-size: var(--fs-caption);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: background 160ms ease, transform 160ms ease;
-}
-
-.product-view-link:hover {
-  background: var(--color-primary-strong);
-  transform: translateX(0.22rem);
 }
 
 .home-reliability-band {
@@ -716,8 +643,11 @@
     width: 100%;
   }
 
-  .split-button {
+  .home-page .mab-button {
+    --mab-label-width: calc(
+      100% - var(--mab-gap) - var(--mab-plus-size)
+    );
+
     width: 100%;
-    grid-template-columns: minmax(0, 1fr) auto;
   }
 }

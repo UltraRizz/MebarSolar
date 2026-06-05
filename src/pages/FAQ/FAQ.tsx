@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import heroImage from "../../assets/images/about/section.png";
 import "./FAQ.css";
@@ -227,10 +227,7 @@ const FAQ: React.FC = () => {
       <section className="faq-cta" aria-labelledby="faq-cta-title">
         <div className="page-shell faq-cta-inner">
           <h2 id="faq-cta-title">Still have questions? We're happy to help.</h2>
-          <Link className="faq-cta-button" to="/contact">
-            <span>Get a quote</span>
-            <span aria-hidden="true">+</span>
-          </Link>
+          <AnimatedButton to="/contact">Get a quote</AnimatedButton>
         </div>
       </section>
 

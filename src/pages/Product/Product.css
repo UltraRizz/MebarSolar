@@ -368,28 +368,8 @@
   line-height: 1.05;
 }
 
-.product-footer-cta a {
-  position: relative;
+.product-footer-cta .mab-button {
   flex: 0 0 auto;
-  color: var(--color-text);
-  font-family: var(--font-cta);
-  font-size: var(--fs-body-compact);
-  font-weight: 800;
-  line-height: 1.2;
-  transition: color 160ms ease;
-}
-
-.product-footer-cta a::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  inset-block-start: calc(100% + 0.5rem);
-  height: 0.08rem;
-  background: var(--color-primary);
-}
-
-.product-footer-cta a:hover {
-  color: var(--color-primary);
 }
 
 @media (max-width: 52rem) {
@@ -525,8 +505,7 @@
     text-align: left;
   }
 
-  .product-footer-cta a {
+  .product-footer-cta .mab-button {
     width: 100%;
-    padding-block-end: 0.65rem;
   }
 }

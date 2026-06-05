@@ -1,4 +1,5 @@
 import React from "react";
+import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import aboutImage from "../../assets/images/about/section.png";
 import "./Contact.css";
@@ -117,10 +118,9 @@ const Contact: React.FC = () => {
               </label>
             </div>
 
-            <button className="contact-submit" type="submit">
-              <span>Send Inquiry</span>
-              <span aria-hidden="true">+</span>
-            </button>
+            <AnimatedButton className="contact-submit" type="submit">
+              Send Inquiry
+            </AnimatedButton>
           </form>
         </div>
 

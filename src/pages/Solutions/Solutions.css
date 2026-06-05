@@ -120,18 +120,8 @@
   line-height: 1.65;
 }
 
-.solution-card a {
-  width: fit-content;
+.solution-card .mab-button {
   margin-block-start: var(--space-md);
-  color: var(--color-text);
-  font-size: var(--fs-body-compact);
-  font-weight: 600;
-  transition: color 160ms ease, transform 160ms ease;
-}
-
-.solution-card a:hover {
-  color: var(--color-primary);
-  transform: translateX(0.22rem);
 }
 
 @media (max-width: 56rem) {

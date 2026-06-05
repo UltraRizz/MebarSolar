@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import heroImage from "../../assets/images/home/hero.jpg";
 import productImage from "../../assets/images/home/section1.jpg";
@@ -89,21 +90,6 @@ const reliabilityFeatures = [
   },
 ];
 
-const SplitButton = ({
-  children,
-  to,
-  tone = "orange",
-}: {
-  children: React.ReactNode;
-  to: string;
-  tone?: "orange" | "dark";
-}) => (
-  <Link className={`split-button split-button-${tone}`} to={to}>
-    <span>{children}</span>
-    <span aria-hidden="true">+</span>
-  </Link>
-);
-
 const Home: React.FC = () => {
   return (
     <div className="home-page">
@@ -126,10 +112,10 @@ const Home: React.FC = () => {
           </p>
 
           <div className="hero-actions" aria-label="Primary actions">
-            <SplitButton to="/contact">Order now</SplitButton>
-            <SplitButton to="/about" tone="dark">
+            <AnimatedButton to="/contact">Order now</AnimatedButton>
+            <AnimatedButton to="/about" theme="dark">
               Learn more
-            </SplitButton>
+            </AnimatedButton>
           </div>
         </div>
       </section>
@@ -158,7 +144,7 @@ const Home: React.FC = () => {
             panels deliver dependable output, long service life, and real
             long-term savings across every energy need.
           </p>
-          <SplitButton to="/contact">Request a quote</SplitButton>
+          <AnimatedButton to="/contact">Request a quote</AnimatedButton>
         </div>
 
         <figure className="product-figure">
@@ -199,9 +185,9 @@ const Home: React.FC = () => {
               ))}
             </div>
 
-            <SplitButton to="/about" tone="dark">
+            <AnimatedButton to="/about" theme="dark">
               Read more
-            </SplitButton>
+            </AnimatedButton>
           </div>
         </div>
       </section>
@@ -241,12 +227,9 @@ const Home: React.FC = () => {
                 </dl>
 
                 <div className="product-card-actions">
-                  <SplitButton to="/contact" tone="dark">
+                  <AnimatedButton to="/contact" theme="dark" className="product-card-button">
                     Learn more
-                  </SplitButton>
-                  <Link className="product-view-link" to="/product">
-                    View
-                  </Link>
+                  </AnimatedButton>
                 </div>
               </div>
             </article>
@@ -317,13 +300,9 @@ const Home: React.FC = () => {
               </label>
             </div>
 
-            <button
-              className="split-button split-button-orange inquiry-submit"
-              type="button"
-            >
-              <span>Send inquiry</span>
-              <span aria-hidden="true">+</span>
-            </button>
+            <AnimatedButton className="inquiry-submit" type="button">
+              Send inquiry
+            </AnimatedButton>
           </form>
 
           <aside className="inquiry-contact-card" aria-label="Contact details">

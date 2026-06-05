@@ -157,47 +157,6 @@
   margin-block-start: var(--space-lg);
 }
 
-.detail-action {
-  display: inline-grid;
-  grid-template-columns: max-content auto;
-  min-height: clamp(3rem, 4.2vw, 3.7rem);
-  color: var(--color-surface);
-  font-family: var(--font-cta);
-  font-size: var(--fs-caption);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: gap 180ms ease, transform 180ms ease;
-}
-
-.detail-action:hover {
-  gap: 0.45rem;
-  transform: translateY(-0.12rem);
-}
-
-.detail-action span {
-  display: grid;
-  place-items: center;
-  min-width: 3rem;
-  padding-inline: 1.15rem;
-}
-
-.detail-action span:first-child {
-  min-width: clamp(8rem, 12vw, 11rem);
-}
-
-.detail-action-dark span {
-  background: var(--color-accent);
-}
-
-.detail-action-orange span {
-  background: var(--color-primary);
-}
-
-.detail-action-orange:hover span {
-  background: var(--color-primary-strong);
-}
-
 .product-detail-specs-band {
   background: var(--color-section);
 }
@@ -381,40 +340,6 @@
   line-height: 1.15;
 }
 
-.product-detail-order-cta a {
-  display: inline-grid;
-  grid-template-columns: max-content auto;
-  min-height: clamp(3rem, 4.5vw, 3.9rem);
-  color: var(--color-surface);
-  font-family: var(--font-cta);
-  font-size: var(--fs-caption);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: gap 180ms ease, transform 180ms ease;
-}
-
-.product-detail-order-cta a:hover {
-  gap: 0.45rem;
-  transform: translateY(-0.12rem);
-}
-
-.product-detail-order-cta a span {
-  display: grid;
-  place-items: center;
-  min-width: 3.2rem;
-  padding-inline: 1.25rem;
-  background: var(--color-primary);
-}
-
-.product-detail-order-cta a span:first-child {
-  min-width: clamp(10rem, 14vw, 13rem);
-}
-
-.product-detail-order-cta a:hover span {
-  background: var(--color-primary-strong);
-}
-
 @media (max-width: 56rem) {
   .product-detail-layout {
     grid-template-columns: 1fr;
@@ -437,11 +362,6 @@
     grid-template-columns: 1fr;
   }
 
-  .detail-action {
-    width: 100%;
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-
   .product-detail-spec-list dd,
   .product-detail-specs dd {
     text-align: left;
@@ -452,8 +372,7 @@
     grid-template-columns: 1fr;
   }
 
-  .product-detail-order-cta a {
+  .product-detail-order-cta .mab-button {
     width: 100%;
-    grid-template-columns: minmax(0, 1fr) auto;
   }
 }

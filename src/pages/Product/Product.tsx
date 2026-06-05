@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import productImage from "../../assets/product/product1.jpg";
 import "./Product.css";
@@ -165,7 +166,7 @@ const Product: React.FC = () => {
       <section className="product-footer-cta" aria-label="More product specifications">
         <div className="page-shell product-footer-cta-inner">
           <h2>For more product specifications</h2>
-          <Link to="/contact">Contact us</Link>
+          <AnimatedButton to="/contact">Contact us</AnimatedButton>
         </div>
       </section>
 

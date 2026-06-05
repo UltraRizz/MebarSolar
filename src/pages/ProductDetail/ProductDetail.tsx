@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import productImage from "../../assets/product/product1.jpg";
 import productThumbOne from "../../assets/images/home/section1.jpg";
@@ -115,14 +116,10 @@ const ProductDetail: React.FC = () => {
             </dl>
 
             <div className="product-detail-actions">
-              <Link className="detail-action detail-action-dark" to="/contact">
-                <span>Learn more</span>
-                <span aria-hidden="true">+</span>
-              </Link>
-              <Link className="detail-action detail-action-orange" to="/contact">
-                <span>Order now</span>
-                <span aria-hidden="true">+</span>
-              </Link>
+              <AnimatedButton to="/contact" theme="dark">
+                Learn more
+              </AnimatedButton>
+              <AnimatedButton to="/contact">Order now</AnimatedButton>
             </div>
           </div>
         </div>
@@ -186,10 +183,7 @@ const ProductDetail: React.FC = () => {
       <section className="product-detail-order-cta" aria-label="Order Mebar Pro 550">
         <div className="page-shell product-detail-order-cta-inner">
           <h2>Ready to order the Mebar Pro 550?</h2>
-          <Link to="/contact">
-            <span>Get a quote</span>
-            <span aria-hidden="true">+</span>
-          </Link>
+          <AnimatedButton to="/contact">Get a quote</AnimatedButton>
         </div>
       </section>
 
