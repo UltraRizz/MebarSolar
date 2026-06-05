@@ -43,6 +43,26 @@ const parseRgb = (color: string) => {
 const getLuminance = ({ r, g, b }: { r: number; g: number; b: number }) =>
   (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
 
+const getGradientTone = (backgroundImage: string): RailTone | null => {
+  if (!backgroundImage.includes("gradient")) {
+    return null;
+  }
+
+  const colors = backgroundImage
+    .match(/rgba?\([^)]+\)/g)
+    ?.map(parseRgb)
+    .filter((color): color is { r: number; g: number; b: number; a: number } => Boolean(color));
+
+  if (!colors?.length) {
+    return null;
+  }
+
+  const averageLuminance =
+    colors.reduce((total, color) => total + getLuminance(color), 0) / colors.length;
+
+  return averageLuminance > 0.68 ? "light" : "dark";
+};
+
 const getBackgroundToneAtPoint = (x: number, y: number): RailTone => {
   const elements = document.elementsFromPoint(x, y);
 
@@ -59,7 +79,15 @@ const getBackgroundToneAtPoint = (x: number, y: number): RailTone => {
     const styles = window.getComputedStyle(element);
 
     if (styles.backgroundImage && styles.backgroundImage !== "none") {
-      return "image";
+      if (styles.backgroundImage.includes("url(")) {
+        return "image";
+      }
+
+      const gradientTone = getGradientTone(styles.backgroundImage);
+
+      if (gradientTone) {
+        return gradientTone;
+      }
     }
 
     if (element.tagName === "IMG" || element.tagName === "VIDEO" || element.tagName === "CANVAS") {

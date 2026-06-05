@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import heroImage from "../../assets/images/home/homeHero.png";
@@ -9,6 +10,8 @@ import productCardOneImage from "../../assets/images/home/section1.jpg";
 import trustImage from "../../assets/images/home/section2.jpg";
 import productCardImage from "../../assets/images/home/section3.jpg";
 import "./Home.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
   { value: "250+", label: "Installations" },
@@ -92,19 +95,38 @@ const reliabilityFeatures = [
   },
 ];
 
+const parseStatValue = (value: string) => {
+  const match = value.match(/^([\d.]+)(.*)$/);
+
+  if (!match) {
+    return null;
+  }
+
+  const [, numberPart, suffix] = match;
+  const decimals = numberPart.includes(".") ? numberPart.split(".")[1].length : 0;
+
+  return {
+    target: Number(numberPart),
+    suffix,
+    decimals,
+  };
+};
+
 const Home: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null);
   const heroImageRef = useRef<HTMLImageElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
   const heroLineRef = useRef<HTMLSpanElement>(null);
+  const statsRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
     const hero = heroRef.current;
     const image = heroImageRef.current;
     const content = heroContentRef.current;
     const line = heroLineRef.current;
+    const statsSection = statsRef.current;
 
-    if (!hero || !image || !content || !line) {
+    if (!hero || !image || !content || !line || !statsSection) {
       return undefined;
     }
 
@@ -113,6 +135,8 @@ const Home: React.FC = () => {
     if (reduceMotion) {
       return undefined;
     }
+
+    let imageScrollTrigger: ScrollTrigger | undefined;
 
     const context = gsap.context(() => {
       gsap
@@ -131,12 +155,12 @@ const Home: React.FC = () => {
         )
         .fromTo(
           line,
-          { scaleX: 0, autoAlpha: 0 },
-          { scaleX: 1, autoAlpha: 1, duration: 0.8 },
+          { scale: 0.82, autoAlpha: 0 },
+          { scale: 1, autoAlpha: 1, duration: 0.9 },
           0.35,
         );
 
-      gsap.to(image, {
+      const floatTween = gsap.to(image, {
         y: -16,
         rotation: -5.6,
         duration: 3.8,
@@ -145,9 +169,81 @@ const Home: React.FC = () => {
         yoyo: true,
         delay: 1.05,
       });
+
+      imageScrollTrigger = ScrollTrigger.create({
+        trigger: hero,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.4,
+        animation: gsap
+          .timeline()
+          .to(
+            image,
+            {
+              xPercent: -8,
+              yPercent: -20,
+              rotation: -2.5,
+              scale: 0.78,
+              ease: "none",
+              onStart: () => floatTween.pause(),
+              onReverseComplete: () => floatTween.resume(),
+            },
+            0,
+          )
+          .to(
+            line,
+            {
+              scale: 0.68,
+              autoAlpha: 0.26,
+              ease: "none",
+            },
+            0,
+          ),
+      });
+
+      const statElements = gsap.utils.toArray<HTMLElement>(".stat-value", statsSection);
+
+      const statsTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: statsSection,
+          start: "top 76%",
+          once: true,
+        },
+      });
+
+      statElements.forEach((element, index) => {
+        const finalValue = element.dataset.statValue ?? element.textContent ?? "";
+        const parsed = parseStatValue(finalValue);
+
+        if (!parsed) {
+          return;
+        }
+
+        statsTimeline.to(
+          { progress: 0 },
+          {
+            progress: 1,
+            duration: 1.12,
+            ease: "power3.out",
+            onUpdate() {
+              const progress = this.targets()[0].progress as number;
+              const noise = Math.random() * parsed.target * 0.32 * (1 - progress);
+              const current = Math.min(parsed.target, parsed.target * progress + noise);
+              element.textContent = `${current.toFixed(parsed.decimals)}${parsed.suffix}`;
+            },
+            onComplete() {
+              element.textContent = finalValue;
+            },
+          },
+          index * 0.08,
+        );
+      });
     }, hero);
 
-    return () => context.revert();
+    return () => {
+      imageScrollTrigger?.kill();
+      context.revert();
+    };
   }, []);
 
   return (
@@ -191,10 +287,12 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section className="home-stats page-shell" aria-label="Company metrics">
+      <section ref={statsRef} className="home-stats page-shell" aria-label="Company metrics">
         {stats.map((stat) => (
           <article className="stat-card" key={stat.label}>
-            <strong>{stat.value}</strong>
+            <strong className="stat-value" data-stat-value={stat.value}>
+              {stat.value}
+            </strong>
             <span>{stat.label}</span>
           </article>
         ))}
