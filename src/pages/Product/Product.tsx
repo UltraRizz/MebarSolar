@@ -1,78 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
-import productImage from "../../assets/product/product1.jpg";
+import ProductTypeScroller from "../../components/ProductTypeScroller/ProductTypeScroller";
+import { defaultProduct, products } from "../../data";
 import "./Product.css";
 
-const panelTypes = ["HF45", "HF82", "HF100", "HF145", "HF165"];
-
-const keyElements = [
-  { icon: "W", label: "Peak power Pmax (Wp)", value: "45W" },
-  { icon: "1.7", label: "Ultra thin", value: "1.7mm" },
-  { icon: "kg", label: "Super light", value: "0.8kg" },
-  { icon: "m2", label: "Minimum footprint", value: "0.32m2" },
-];
-
-const specifications = [
-  ["Tolerance (%)", "up to 5% only positive"],
-  ["Open circuit voltage, Voc (V)", "20.2"],
-  ["Short circuit current, Isc (A)", "2.9"],
-  ["Voltage at Pmax, Vmp (V)", "17"],
-  ["Current at Pmax, Imp (A)", "2.7"],
-  ["Temp. coefficient of Isc, a (%/C)", "0.05"],
-  ["Temperature coefficient of Voc, b (%/C)", "-0.31"],
-  ["Temperature coefficient Pmax (%/C)", "-0.41"],
-  ["Fill Factor (FF) (%)", "78.4"],
-  ["Operating temperature (C)", "from -40 to +80"],
-  ["NOCT (C)", "47.5"],
-  ["Module material", "UVA-resistant Plastic Polymer"],
-  ["Dimensions (wxh) (m)", "0.536 x 0.604"],
-  ["Thickness (mm)", "1.7"],
-  ["Weight (kg)", "0.8"],
-  ["Maximum system voltage (V)", "600"],
-  ["Photovoltaic cells", "n. 18 mono Si 25x125 2BB cut 1/2"],
-  ["Output terminals", "1m Cables with MC4 connectors"],
-  ["Bypass diode (A)", "1 inside JB, 12A"],
-];
-
-const applications = [
-  "Nautical",
-  "Caravanning",
-  "Agrivoltaics",
-  "Off-grid",
-  "Telecom towers",
-  "Rural infrastructure",
-];
-
 const Product: React.FC = () => {
+  const [selectedProduct, setSelectedProduct] = useState(defaultProduct);
+
   return (
     <div className="product-page">
       <section className="product-showcase page-shell" aria-labelledby="product-title">
-        <div className="product-panel-header">
-          <p>Panel types</p>
-          <div className="product-panel-strip" aria-label="Panel types">
-            {panelTypes.map((panel, index) => (
-              <span
-                className={index === 0 ? "is-active" : undefined}
-                key={panel}
-                aria-current={index === 0 ? "true" : undefined}
-              >
-                {panel}
-              </span>
-            ))}
-          </div>
-
-          <div className="product-arrows" aria-hidden="true">
-            <span>&larr;</span>
-            <span>&rarr;</span>
-          </div>
-        </div>
+        <ProductTypeScroller
+          products={products}
+          activeProductCode={selectedProduct.code}
+          onProductChange={setSelectedProduct}
+        />
 
         <div className="product-feature">
           <aside className="product-brief">
             <p>Description</p>
-            <strong>Up to 320 W and available in stripe format</strong>
+            <strong>{selectedProduct.shortDescription}</strong>
             <a href="#product-description">
               <span>Learn more</span>
               <span aria-hidden="true">&darr;</span>
@@ -80,10 +29,10 @@ const Product: React.FC = () => {
           </aside>
 
           <figure className="product-hero-image">
-            <Link to="/product-detail" aria-label="View Mebar Pro 550 product detail">
+            <Link to="/product-detail" aria-label={`View ${selectedProduct.name} product detail`}>
               <img
-                src={productImage}
-                alt="Aerial view of solar panel rows installed over green ground"
+                src={selectedProduct.showcaseImage.src}
+                alt={selectedProduct.showcaseImage.alt}
               />
             </Link>
           </figure>
@@ -101,18 +50,14 @@ const Product: React.FC = () => {
           <div className="product-sheet" aria-label="Technical data sheet">
             <span className="product-sheet-icon">PDF</span>
             <span>
-              <small>Technical data sheet IT/EN</small>
-              <strong>HF45</strong>
+              <small>{selectedProduct.datasheetLabel}</small>
+              <strong>{selectedProduct.code}</strong>
             </span>
           </div>
         </div>
 
         <div className="product-description-copy">
-          <p>
-            This model is versatile, slim, compact and capable of preventing the
-            risks of adverse weather conditions and wear and tear by being
-            waterproof and rustproof.
-          </p>
+          <p>{selectedProduct.description}</p>
           <a href="#technical-specifications" aria-label="View technical specifications">
             &darr;
           </a>
@@ -127,7 +72,7 @@ const Product: React.FC = () => {
         <div className="product-key-elements">
           <h2>Key elements</h2>
           <div className="product-key-grid">
-            {keyElements.map((item) => (
+            {selectedProduct.keyElements.map((item) => (
               <article className="product-key-item" key={item.label}>
                 <span className="product-key-icon" aria-hidden="true">
                   {item.icon}
@@ -144,7 +89,7 @@ const Product: React.FC = () => {
         <div className="product-specifications">
           <h2 id="technical-specifications-title">Technical specifications</h2>
           <dl>
-            {specifications.map(([label, value]) => (
+            {selectedProduct.specifications.map(([label, value]) => (
               <div key={label}>
                 <dt>{label}</dt>
                 <dd>{value}</dd>
@@ -156,7 +101,7 @@ const Product: React.FC = () => {
         <div className="product-applications">
           <h2>Applications</h2>
           <ul>
-            {applications.map((application) => (
+            {selectedProduct.applications.map((application) => (
               <li key={application}>{application}</li>
             ))}
           </ul>

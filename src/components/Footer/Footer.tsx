@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ultraLogo from "../../assets/images/Footer/Ultra.png";
+import footerMap from "../../assets/images/Footer/Map.svg";
 import "./Footer.css";
 
 const footerGroups = [
@@ -58,6 +59,10 @@ const Footer: React.FC = () => {
                 ))}
               </nav>
             ))}
+          </div>
+
+          <div className="footer-map" aria-hidden="true">
+            <img src={footerMap} alt="" />
           </div>
         </div>
 
