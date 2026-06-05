@@ -8,6 +8,7 @@ type AnimatedButtonProps = {
   children: React.ReactNode;
   theme?: AnimatedButtonTheme;
   to?: string;
+  href?: string;
   type?: "button" | "submit" | "reset";
   className?: string;
   ariaLabel?: string;
@@ -46,12 +47,26 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
   children,
   theme = "orange",
   to,
+  href,
   type = "button",
   className = "",
   ariaLabel,
   onClick,
 }) => {
   const classes = `mab-button mab-button-${theme}${className ? ` ${className}` : ""}`;
+
+  if (href) {
+    return (
+      <a
+        className={classes}
+        href={href}
+        aria-label={ariaLabel}
+        onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
+      >
+        <AnimatedButtonContent>{children}</AnimatedButtonContent>
+      </a>
+    );
+  }
 
   if (to) {
     return (

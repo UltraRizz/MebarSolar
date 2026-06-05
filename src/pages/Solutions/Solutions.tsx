@@ -66,7 +66,7 @@ const Solutions: React.FC = () => {
               <h2>{solution.title}</h2>
               <p>{solution.description}</p>
               <AnimatedButton to="/contact" theme="dark" className="solution-card-button">
-                Learn More
+                Request quote
               </AnimatedButton>
             </article>
           ))}

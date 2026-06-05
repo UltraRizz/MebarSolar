@@ -58,8 +58,8 @@ const ProductDetail: React.FC = () => {
             </dl>
 
             <div className="product-detail-actions">
-              <AnimatedButton to="/contact" theme="dark">
-                Learn more
+              <AnimatedButton href="#technical-specifications" theme="dark">
+                View specs
               </AnimatedButton>
               <AnimatedButton to="/contact">Order now</AnimatedButton>
             </div>
@@ -67,7 +67,7 @@ const ProductDetail: React.FC = () => {
         </div>
       </section>
 
-      <section className="product-detail-specs-band">
+      <section className="product-detail-specs-band" id="technical-specifications">
         <div className="page-shell product-detail-specs">
           <p className="section-kicker">Details</p>
           <h2>Technical Specifications</h2>

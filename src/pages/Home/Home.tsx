@@ -227,8 +227,8 @@ const Home: React.FC = () => {
                 </dl>
 
                 <div className="product-card-actions">
-                  <AnimatedButton to="/contact" theme="dark" className="product-card-button">
-                    Learn more
+                  <AnimatedButton to="/product-detail" theme="dark" className="product-card-button">
+                    View details
                   </AnimatedButton>
                 </div>
               </div>

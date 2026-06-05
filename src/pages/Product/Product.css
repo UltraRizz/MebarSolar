@@ -1,5 +1,5 @@
 .product-page {
-  padding-block-start: clamp(3rem, 4.2vw, 4.15rem);
+  padding-block-start: 0;
   background: var(--color-page);
   color: var(--color-text);
 }
