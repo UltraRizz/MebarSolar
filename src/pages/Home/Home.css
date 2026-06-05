@@ -5,38 +5,46 @@
 }
 
 .home-hero {
-  display: grid;
-  max-height: 100vh;
-  overflow: hidden;
-  background: var(--color-accent);
-  color: var(--color-surface);
+  position: relative;
+  overflow: clip;
+  background: var(--color-section);
+  color: var(--color-text);
 }
 
-.home-hero-image,
-.home-hero-shade,
-.home-hero-content {
-  grid-area: 1 / 1;
+.home-hero-stage {
+  position: relative;
+  display: grid;
+  min-height: clamp(42rem, 74vw, 56rem);
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .home-hero-image {
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  object-fit: cover;
-}
-
-.home-hero-shade {
-  background:
-    linear-gradient(90deg, rgba(20, 19, 20, 0.82), rgba(20, 19, 20, 0.42) 46%, rgba(20, 19, 20, 0.12)),
-    linear-gradient(0deg, rgba(20, 19, 20, 0.22), rgba(20, 19, 20, 0.22));
+  position: absolute;
+  inset-block-start: clamp(2.4rem, 4.8vw, 4.5rem);
+  inset-inline-start: 48%;
+  z-index: 2;
+  display: block;
+  width: clamp(32rem, 58vw, 70rem);
+  object-fit: contain;
+  pointer-events: none;
+  transform: translate3d(-34%, 0, 0) rotate(-7deg);
+  transform-origin: center top;
+  filter: drop-shadow(0 2.5rem 3rem rgba(20, 19, 20, 0.16));
 }
 
 .home-hero-content {
+  position: relative;
+  z-index: 3;
   display: grid;
-  align-content: center;
-  justify-items: start;
+  grid-template-columns: minmax(0, 0.55fr) minmax(16rem, 0.38fr);
+  align-content: end;
+  align-items: end;
+  justify-content: space-between;
+  gap: clamp(2rem, 8vw, 10rem);
   max-width: var(--container);
-  padding-block: clamp(4rem, 8vw, 7rem);
+  min-height: clamp(42rem, 74vw, 56rem);
+  padding-block: clamp(8rem, 11vw, 10rem) clamp(3.5rem, 6vw, 5rem);
 }
 
 .section-kicker {
@@ -50,20 +58,29 @@
 }
 
 .home-hero h1 {
-  max-width: 11em;
   margin: var(--space-sm) 0 0;
-  color: var(--color-surface);
-  font-size: var(--fs-page-title);
+  color: var(--color-text);
+  font-size: clamp(3.4rem, 6.6vw, 7.8rem);
   font-weight: 700;
-  line-height: 0.95;
+  line-height: 0.92;
 }
 
-.home-hero-content > p:not(.section-kicker) {
-  max-width: 34rem;
-  margin: var(--space-md) 0 0;
-  color: rgba(255, 255, 255, 0.86);
+.home-hero-info {
+  display: grid;
+  justify-items: start;
+  margin-inline-end: clamp(1.5rem, 5vw, 4.5rem);
+  padding-block-end: clamp(0.4rem, 1.4vw, 1.2rem);
+}
+
+.home-hero-info p {
+  max-width: 22rem;
+  margin: 0;
+  color: rgba(20, 19, 20, 0.72);
+  font-family: var(--font-cta);
   font-size: var(--fs-body-compact);
-  line-height: 1.55;
+  font-weight: 800;
+  line-height: 1.35;
+  text-transform: uppercase;
 }
 
 .hero-actions {
@@ -72,6 +89,15 @@
   align-items: center;
   gap: var(--space-md);
   margin-block-start: var(--space-lg);
+}
+
+.home-hero-line {
+  position: absolute;
+  inset-block-end: clamp(7.2rem, 11.8vw, 10.2rem);
+  inset-inline: clamp(1.25rem, 9vw, 11rem) clamp(5rem, 9vw, 11rem);
+  z-index: 0;
+  height: 0.08rem;
+  background: rgba(253, 85, 29, 0.62);
 }
 
 .home-stats {
@@ -607,6 +633,34 @@
 }
 
 @media (max-width: 53.75rem) {
+  .home-hero-stage {
+    min-height: clamp(39rem, 92vw, 50rem);
+  }
+
+  .home-hero-image {
+    inset-block-start: clamp(3.2rem, 9vw, 5.2rem);
+    inset-inline-start: 50%;
+    width: clamp(24rem, 82vw, 42rem);
+    transform: translate3d(-50%, 0, 0) rotate(-6deg);
+  }
+
+  .home-hero-content {
+    grid-template-columns: 1fr;
+    align-content: end;
+    gap: clamp(1.5rem, 5vw, 2.5rem);
+    min-height: clamp(39rem, 92vw, 50rem);
+    padding-inline-end: clamp(3.5rem, 8vw, 5rem);
+  }
+
+  .home-hero-info {
+    margin-inline-end: 0;
+  }
+
+  .home-hero-line {
+    inset-block-end: clamp(10rem, 22vw, 13rem);
+    inset-inline: 1.25rem 4.6rem;
+  }
+
   .home-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -629,14 +683,33 @@
 }
 
 @media (max-width: 35rem) {
-  .home-hero {
-    min-height: 100vh;
+  .home-hero-stage {
+    min-height: 39rem;
   }
 
-  .home-hero-shade {
-    background:
-      linear-gradient(0deg, rgba(20, 19, 20, 0.72), rgba(20, 19, 20, 0.28)),
-      linear-gradient(90deg, rgba(20, 19, 20, 0.72), rgba(20, 19, 20, 0.18));
+  .home-hero-image {
+    inset-block-start: 5.1rem;
+    width: min(94vw, 28rem);
+  }
+
+  .home-hero-content {
+    min-height: 39rem;
+    padding-block: 8rem 2.4rem;
+    padding-inline-end: 3.75rem;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(2.8rem, 15vw, 4.35rem);
+  }
+
+  .home-hero-info p {
+    max-width: 17rem;
+    font-size: 0.78rem;
+  }
+
+  .home-hero-line {
+    inset-block-end: 14.2rem;
+    inset-inline: 1rem 4rem;
   }
 
   .home-stats,

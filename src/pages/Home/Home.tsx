@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
 import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
-import heroImage from "../../assets/images/home/hero.jpg";
+import heroImage from "../../assets/images/home/homeHero.png";
 import productImage from "../../assets/images/home/section1.png";
 import productCardOneImage from "../../assets/images/home/section1.jpg";
 import trustImage from "../../assets/images/home/section2.jpg";
@@ -92,32 +93,101 @@ const reliabilityFeatures = [
 ];
 
 const Home: React.FC = () => {
+  const heroRef = useRef<HTMLElement>(null);
+  const heroImageRef = useRef<HTMLImageElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+  const heroLineRef = useRef<HTMLSpanElement>(null);
+
+  useLayoutEffect(() => {
+    const hero = heroRef.current;
+    const image = heroImageRef.current;
+    const content = heroContentRef.current;
+    const line = heroLineRef.current;
+
+    if (!hero || !image || !content || !line) {
+      return undefined;
+    }
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion) {
+      return undefined;
+    }
+
+    const context = gsap.context(() => {
+      gsap
+        .timeline({ defaults: { ease: "power3.out" } })
+        .fromTo(
+          content,
+          { autoAlpha: 0, y: 28 },
+          { autoAlpha: 1, y: 0, duration: 0.9 },
+          0,
+        )
+        .fromTo(
+          image,
+          { autoAlpha: 0, y: 34, rotation: -11, scale: 0.94 },
+          { autoAlpha: 1, y: 0, rotation: -7, scale: 1, duration: 1.05 },
+          0.08,
+        )
+        .fromTo(
+          line,
+          { scaleX: 0, autoAlpha: 0 },
+          { scaleX: 1, autoAlpha: 1, duration: 0.8 },
+          0.35,
+        );
+
+      gsap.to(image, {
+        y: -16,
+        rotation: -5.6,
+        duration: 3.8,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: 1.05,
+      });
+    }, hero);
+
+    return () => context.revert();
+  }, []);
+
   return (
     <div className="home-page">
-      <section className="home-hero" aria-labelledby="home-hero-title">
-        <img
-          className="home-hero-image"
-          src={heroImage}
-          alt="Solar panels stretching across a green field below a cloudy sky"
-        />
-        <div className="home-hero-shade" aria-hidden="true" />
+      <section
+        ref={heroRef}
+        className="home-hero"
+        aria-labelledby="home-hero-title"
+      >
+        <div className="home-hero-stage">
+          <img
+            ref={heroImageRef}
+            className="home-hero-image"
+            src={heroImage}
+            alt="High-efficiency solar panel module"
+          />
 
-        <div className="page-shell home-hero-content">
-          <p className="section-kicker">Clean solar energy for Bhutan</p>
-          <h1 id="home-hero-title">
-            Powering Bhutan With Clean Solar Energy
-          </h1>
-          <p>
-            Reliable solar panel solutions for homes, businesses, and
-            sustainable energy projects across Bhutan.
-          </p>
+          <div ref={heroContentRef} className="page-shell home-hero-content">
+            <div className="home-hero-title-block">
+              <p className="section-kicker">Clean solar energy for Bhutan</p>
+              <h1 id="home-hero-title">
+                Hi-tech
+                <br />
+                solar power
+              </h1>
+            </div>
 
-          <div className="hero-actions" aria-label="Primary actions">
-            <AnimatedButton to="/contact">Order now</AnimatedButton>
-            <AnimatedButton to="/about" theme="dark">
-              Learn more
-            </AnimatedButton>
+            <div className="home-hero-info">
+              <p>
+                Photovoltaic panels for homes, businesses, and custom clean
+                energy projects across Bhutan.
+              </p>
+
+              <div className="hero-actions" aria-label="Primary actions">
+                <AnimatedButton to="/contact">Order now</AnimatedButton>
+              </div>
+            </div>
           </div>
+
+          <span ref={heroLineRef} className="home-hero-line" aria-hidden="true" />
         </div>
       </section>
 
