@@ -6,6 +6,7 @@ import Footer from "../../components/Footer/Footer";
 import heroImage from "../../assets/images/home/homeHero.png";
 import productImage from "../../assets/images/home/section1.png";
 import productCardOneImage from "../../assets/images/home/section1.jpg";
+import productCardOneImage1 from "../../assets/images/home/section2.png";
 import trustImage from "../../assets/images/home/section2.jpg";
 import productCardImage from "../../assets/images/home/section3.jpg";
 import "./Home.css";
@@ -231,7 +232,7 @@ const Home: React.FC = () => {
           aria-labelledby="home-trust-title"
         >
           <figure className="trust-figure">
-            <img src={trustImage} alt="Solar panel field beside green grass" />
+            <img src={productCardOneImage1 } alt="Solar panel field beside green grass" />
             <figcaption>Factory / Installation photo</figcaption>
           </figure>
 
