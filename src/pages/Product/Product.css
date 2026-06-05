@@ -24,13 +24,11 @@
 }
 
 .product-panel-strip {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: baseline;
-  gap: clamp(0.35rem, 1vw, 0.95rem);
   width: 100%;
   margin-block-start: 0.55rem;
-  color: rgba(20, 19, 20, 0.15);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  color: rgba(20, 19, 20, 0.28);
   font-family: var(--font-heading);
   font-size: clamp(1.95rem, 4vw, 4.1rem);
   font-weight: 700;
@@ -38,16 +36,43 @@
   white-space: nowrap;
 }
 
-.product-panel-strip span {
+.product-panel-track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: clamp(0.35rem, 1vw, 0.95rem);
+  width: max-content;
+  min-width: 100%;
+}
+
+.product-panel-track button {
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: baseline;
   gap: clamp(0.35rem, 1vw, 0.95rem);
   min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  transition: color 160ms ease;
 }
 
-.product-panel-strip span:not(:last-child)::after {
+.product-panel-track button:not(:last-child)::after {
   content: "-";
   color: currentColor;
+}
+
+.product-panel-track button:hover {
+  color: rgba(20, 19, 20, 0.48);
+}
+
+.product-panel-track button:focus-visible {
+  outline: 0.12rem solid var(--color-primary);
+  outline-offset: 0.25rem;
 }
 
 .product-panel-strip .is-active {
@@ -58,11 +83,38 @@
   display: inline-flex;
   gap: 1rem;
   margin-block-start: 0.75rem;
+}
+
+.product-arrows button {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6rem;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: var(--color-primary);
   font-family: var(--font-cta);
   font-size: clamp(1rem, 1.4vw, 1.25rem);
   font-weight: 800;
   line-height: 1;
+  cursor: pointer;
+  transition: color 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+
+.product-arrows button:hover:not(:disabled) {
+  color: var(--color-primary-strong);
+  transform: translateY(-0.08rem);
+}
+
+.product-arrows button:focus-visible {
+  outline: 0.1rem solid var(--color-primary);
+  outline-offset: 0.2rem;
+}
+
+.product-arrows button:disabled {
+  cursor: default;
+  opacity: 0.35;
 }
 
 .product-feature {
@@ -422,11 +474,9 @@
     padding-block: 2.3rem 2rem;
   }
 
-  .product-panel-strip {
-    flex-wrap: wrap;
+  .product-panel-track {
     align-items: center;
     row-gap: 0.45rem;
-    white-space: normal;
   }
 
   .product-feature,
@@ -486,12 +536,15 @@
     gap: 1.9rem;
   }
 
-  .product-panel-strip {
+  .product-panel-track {
     gap: 0.28rem;
+  }
+
+  .product-panel-strip {
     font-size: clamp(1.25rem, 7.4vw, 1.85rem);
   }
 
-  .product-panel-strip span {
+  .product-panel-track button {
     gap: 0.28rem;
   }
 
