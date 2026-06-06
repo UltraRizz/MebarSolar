@@ -281,7 +281,7 @@
   }
 }
 
-@media (max-width: 35rem) {
+@media (max-width: 760px) {
   .projects-hero {
     min-height: clamp(20rem, 52vh, 28rem);
   }

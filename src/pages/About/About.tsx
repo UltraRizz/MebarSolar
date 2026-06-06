@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
+import useScrollReveal from "../../hooks/useScrollReveal";
 import aboutImage from "../../assets/images/about/section.png";
 import "./About.css";
 
@@ -89,8 +90,33 @@ const sustainabilityGoals = [
 ];
 
 const About: React.FC = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
+
+  useScrollReveal(pageRef, [
+    ".about-story-copy",
+    ".about-story-figure",
+    ".about-values > .section-kicker",
+    ".about-values h2",
+    ".about-benefits > .section-kicker",
+    ".about-benefits h2",
+    ".about-team > .section-kicker",
+    ".about-team h2",
+    ".about-certifications > .section-kicker",
+    ".about-certifications h2",
+    ".about-process > .section-kicker",
+    ".about-process h2",
+    ".about-sustainability > .section-kicker",
+    ".about-sustainability h2",
+    ".about-card",
+    ".team-card",
+    ".certification-list span",
+    ".partner-grid span",
+    ".about-cta h2",
+    ".about-cta .mab-button",
+  ]);
+
   return (
-    <div className="about-page">
+    <div ref={pageRef} className="about-page">
       <section className="about-hero" aria-labelledby="about-hero-title">
         <img
           className="about-hero-image"

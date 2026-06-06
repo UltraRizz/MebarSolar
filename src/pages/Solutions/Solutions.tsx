@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
+import useScrollReveal from "../../hooks/useScrollReveal";
 import heroImage from "../../assets/images/about/section.png";
 import "./Solutions.css";
 
@@ -38,8 +39,12 @@ const solutions = [
 ];
 
 const Solutions: React.FC = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
+
+  useScrollReveal(pageRef, [".solution-card"]);
+
   return (
-    <div className="solutions-page">
+    <div ref={pageRef} className="solutions-page">
       <section className="solutions-hero" aria-labelledby="solutions-hero-title">
         <img
           className="solutions-hero-image"

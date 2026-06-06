@@ -236,7 +236,7 @@
   font-size: clamp(1rem, 1.4vw, 1.25rem);
 }
 
-@media (max-width: 35rem) {
+@media (max-width: 760px) {
   .faq-hero {
     min-height: clamp(20rem, 52vh, 28rem);
   }

@@ -167,7 +167,7 @@
   height: auto;
 }
 
-@media (max-width: 56rem) {
+@media (max-width: 1024px) {
   .footer-top {
     grid-template-columns: minmax(13rem, 0.8fr) minmax(0, 1.2fr);
     gap: clamp(2rem, 6vw, 4rem);
@@ -196,7 +196,7 @@
   }
 }
 
-@media (max-width: 35rem) {
+@media (max-width: 760px) {
   .site-footer {
     background: #252525;
   }

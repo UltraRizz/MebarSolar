@@ -631,7 +631,7 @@
   }
 }
 
-@media (max-width: 35rem) {
+@media (max-width: 760px) {
   .brand {
     top: 1.05rem;
     left: 1.25rem;

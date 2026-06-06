@@ -130,7 +130,7 @@
   }
 }
 
-@media (max-width: 35rem) {
+@media (max-width: 760px) {
   .solutions-hero {
     min-height: clamp(20rem, 52vh, 28rem);
   }

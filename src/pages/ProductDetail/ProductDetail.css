@@ -359,7 +359,7 @@
   }
 }
 
-@media (max-width: 35rem) {
+@media (max-width: 760px) {
   .product-detail-actions,
   .product-detail-spec-list div,
   .product-detail-specs dl div {

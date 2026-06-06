@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
+import useScrollReveal from "../../hooks/useScrollReveal";
 import heroImage from "../../assets/images/about/section.png";
 import projectOne from "../../assets/project/proj1.jpg";
 import projectTwo from "../../assets/project/proj2.jpg";
@@ -92,8 +93,19 @@ const impactMetrics = [
 ];
 
 const Projects: React.FC = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
+
+  useScrollReveal(pageRef, [
+    ".project-card",
+    ".projects-impact > .section-kicker",
+    ".projects-impact h2",
+    ".projects-impact-card",
+    ".projects-cta h2",
+    ".projects-cta .mab-button",
+  ]);
+
   return (
-    <div className="projects-page">
+    <div ref={pageRef} className="projects-page">
       <section className="projects-hero" aria-labelledby="projects-hero-title">
         <img
           className="projects-hero-image"

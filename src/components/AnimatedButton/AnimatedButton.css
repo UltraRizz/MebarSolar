@@ -184,7 +184,7 @@
   }
 }
 
-@media (max-width: 35rem) {
+@media (max-width: 760px) {
   .mab-button {
     --mab-label-width: clamp(8rem, 50vw, 10.4rem);
     --mab-plus-size: 2.55rem;

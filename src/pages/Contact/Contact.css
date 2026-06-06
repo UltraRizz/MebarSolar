@@ -190,13 +190,13 @@
   background: var(--color-surface);
 }
 
-@media (max-width: 53.75rem) {
+@media (max-width: 1024px) {
   .contact-order {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 35rem) {
+@media (max-width: 760px) {
   .contact-hero {
     min-height: clamp(20rem, 52vh, 28rem);
   }

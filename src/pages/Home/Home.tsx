@@ -10,6 +10,8 @@ import productCardOneImage from "../../assets/images/home/section1.jpg";
 import productCardOneImage1 from "../../assets/images/home/section2.png";
 import trustImage from "../../assets/images/home/section2.jpg";
 import productCardImage from "../../assets/images/home/section3.jpg";
+// Ignore missing type declarations for CSS side-effect import
+// @ts-ignore
 import "./Home.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -136,6 +138,7 @@ const scrambleText = (text: string, progress: number) => {
 };
 
 const Home: React.FC = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const heroImageRef = useRef<HTMLImageElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
@@ -143,13 +146,14 @@ const Home: React.FC = () => {
   const statsRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
+    const page = pageRef.current;
     const hero = heroRef.current;
     const image = heroImageRef.current;
     const content = heroContentRef.current;
     const line = heroLineRef.current;
     const statsSection = statsRef.current;
 
-    if (!hero || !image || !content || !line || !statsSection) {
+    if (!page || !hero || !image || !content || !line || !statsSection) {
       return undefined;
     }
 
@@ -185,16 +189,6 @@ const Home: React.FC = () => {
           0.35,
         );
 
-      const floatTween = gsap.to(image, {
-        y: -16,
-        rotation: -5.6,
-        duration: 3.8,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-        delay: 1.05,
-      });
-
       imageScrollTrigger = ScrollTrigger.create({
         trigger: hero,
         start: "top top",
@@ -210,8 +204,6 @@ const Home: React.FC = () => {
               rotation: -2.5,
               scale: 0.78,
               ease: "none",
-              onStart: () => floatTween.pause(),
-              onReverseComplete: () => floatTween.resume(),
             },
             0,
           )
@@ -224,6 +216,52 @@ const Home: React.FC = () => {
             },
             0,
           ),
+      });
+
+      const revealElements = gsap.utils.toArray<HTMLElement>(
+        [
+          ".stat-card",
+          ".home-product-copy",
+          ".product-figure",
+          ".home-trust-copy",
+          ".trust-figure",
+          ".home-products-header",
+          ".product-card",
+          ".reliability-card",
+          ".inquiry-heading",
+          ".inquiry-form",
+          ".inquiry-contact-card",
+          ".home-projects h2",
+          ".home-projects .mab-button",
+        ].join(","),
+      );
+
+      gsap.set(revealElements, {
+        autoAlpha: 0,
+        y: 44,
+        willChange: "transform, opacity",
+      });
+
+      revealElements.forEach((element) => {
+        gsap.to(element, {
+          autoAlpha: 1,
+          y: 0,
+          ease: "power3.out",
+          overwrite: "auto",
+          scrollTrigger: {
+            trigger: element,
+            start: "top 90%",
+            end: "top 68%",
+            scrub: 0.55,
+            invalidateOnRefresh: true,
+          },
+          onComplete: () => {
+            gsap.set(element, { clearProps: "willChange" });
+          },
+          onReverseComplete: () => {
+            gsap.set(element, { willChange: "transform, opacity" });
+          },
+        });
       });
 
       const statElements = gsap.utils.toArray<HTMLElement>(
@@ -277,7 +315,7 @@ const Home: React.FC = () => {
           index * 0.08,
         );
       });
-    }, hero);
+    }, page);
 
     return () => {
       imageScrollTrigger?.kill();
@@ -286,7 +324,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="home-page">
+    <div ref={pageRef} className="home-page">
       <section
         ref={heroRef}
         className="home-hero"

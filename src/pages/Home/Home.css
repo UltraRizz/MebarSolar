@@ -668,7 +668,7 @@
   max-width: 16em;
 }
 
-@media (max-width: 53.75rem) {
+@media (max-width: 1024px) {
   .home-hero-stage {
     min-height: clamp(42rem, 65vw, 49rem);
   }
@@ -729,9 +729,13 @@
   .home-trust-copy {
     order: 1;
   }
+  .product-figure,
+  .trust-figure {
+    display: none;
+  }
 }
 
-@media (max-width: 35rem) {
+@media (max-width: 760px) {
   .home-hero {
     background: linear-gradient(
       180deg,

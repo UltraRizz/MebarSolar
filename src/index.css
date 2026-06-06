@@ -68,7 +68,10 @@ li {
 }
 
 .page-shell {
-  width: min(calc(100% - var(--page-gutter) - var(--page-gutter)), var(--container));
+  width: min(
+    calc(100% - var(--page-gutter) - var(--page-gutter)),
+    var(--container)
+  );
   margin: 0 auto;
 }
 
@@ -89,7 +92,10 @@ li {
   font-weight: 700;
   line-height: 1;
   cursor: pointer;
-  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
 }
 
 .button-primary {

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
+import useScrollReveal from "../../hooks/useScrollReveal";
 import aboutImage from "../../assets/images/about/section.png";
 import "./Contact.css";
 
@@ -37,8 +38,20 @@ const inquiryTypes = [
 ];
 
 const Contact: React.FC = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
+
+  useScrollReveal(pageRef, [
+    ".contact-form-panel",
+    ".contact-form label",
+    ".contact-submit",
+    ".contact-info-card",
+    ".contact-location .section-kicker",
+    ".contact-location h2",
+    ".contact-map-placeholder",
+  ]);
+
   return (
-    <div className="contact-page">
+    <div ref={pageRef} className="contact-page">
       <section className="contact-hero" aria-labelledby="contact-hero-title">
         <img
           className="contact-hero-image"

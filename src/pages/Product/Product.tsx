@@ -1,16 +1,36 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
 import ProductTypeScroller from "../../components/ProductTypeScroller/ProductTypeScroller";
+import useScrollReveal from "../../hooks/useScrollReveal";
 import { defaultProduct, products } from "../../data";
 import "./Product.css";
 
 const Product: React.FC = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
   const [selectedProduct, setSelectedProduct] = useState(defaultProduct);
 
+  useScrollReveal(pageRef, [
+    ".product-panel-header",
+    ".product-panel-strip",
+    ".product-arrows",
+    ".product-brief",
+    ".product-hero-image",
+    ".product-description-title",
+    ".product-description-copy",
+    ".product-key-elements h2",
+    ".product-key-item",
+    ".product-specifications h2",
+    ".product-specifications dl div",
+    ".product-applications h2",
+    ".product-applications li",
+    ".product-footer-cta h2",
+    ".product-footer-cta .mab-button",
+  ]);
+
   return (
-    <div className="product-page">
+    <div ref={pageRef} className="product-page">
       <section className="product-showcase page-shell" aria-labelledby="product-title">
         <ProductTypeScroller
           products={products}

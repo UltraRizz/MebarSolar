@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import AnimatedButton from "../../components/AnimatedButton/AnimatedButton";
 import Footer from "../../components/Footer/Footer";
+import useScrollReveal from "../../hooks/useScrollReveal";
 import { defaultProduct } from "../../data";
 import "./ProductDetail.css";
 
 const ProductDetail: React.FC = () => {
+  const pageRef = useRef<HTMLDivElement>(null);
   const product = defaultProduct;
 
+  useScrollReveal(pageRef, [
+    ".product-breadcrumb",
+    ".product-detail-gallery",
+    ".product-detail-summary",
+    ".product-detail-specs .section-kicker",
+    ".product-detail-specs h2",
+    ".product-detail-specs dl div",
+    ".product-detail-features-heading",
+    ".product-detail-feature-card",
+    ".product-detail-support-grid article",
+    ".product-detail-order-cta h2",
+    ".product-detail-order-cta .mab-button",
+  ]);
+
   return (
-    <div className="product-detail-page">
+    <div ref={pageRef} className="product-detail-page">
       <section className="product-detail-hero page-shell" aria-labelledby="product-detail-title">
         <nav className="product-breadcrumb" aria-label="Breadcrumb">
           <Link to="/">Home</Link>

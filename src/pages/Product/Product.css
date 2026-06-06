@@ -511,7 +511,7 @@
   }
 }
 
-@media (max-width: 35rem) {
+@media (max-width: 760px) {
   .product-showcase {
     gap: 1.9rem;
   }
